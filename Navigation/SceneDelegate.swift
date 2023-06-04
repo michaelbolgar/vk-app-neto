@@ -13,27 +13,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
-        //        window = UIWindow (frame: windowScene.coordinateSpace.bounds)
-        //        window?.windowScene = windowScene
-        //
-        //        let viewController = ViewController1()
-        //        let profileVC = ProfileViewController()
-        //        let newsVC = NewsFeedViewController()
-        ////        let navigationVC = UINavigationController (rootViewController: viewController)
-        //
-        //        let tabBarController = UITabBarController()
-        //        tabBarController.viewControllers = [
-        //            profileVC,
-        //            newsVC
-        //        ]
-        //
-        //        //UITabBar.appearance().tintColor = UIColor.gray
-        //
-        //
-        //
-        //        window?.rootViewController = tabBarController
-        //        window?.makeKeyAndVisible()
-        //    }
 
         func sceneDidDisconnect(_ scene: UIScene) {
             // Called as the scene is being released by the system.
