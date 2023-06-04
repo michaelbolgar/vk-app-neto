@@ -14,6 +14,8 @@
 		F458EE6C2A2BB4590073B151 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EE6B2A2BB4590073B151 /* ProfileViewController.swift */; };
 		F458EE6E2A2BB4A90073B151 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EE6D2A2BB4A90073B151 /* NewsFeedViewController.swift */; };
 		F458EE722A2BBA500073B151 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EE712A2BBA500073B151 /* ViewController1.swift */; };
+		F458EEB02A2CC0280073B151 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EEAF2A2CC0280073B151 /* PostViewController.swift */; };
+		F458EEB22A2CDE2C0073B151 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EEB12A2CDE2C0073B151 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		F458EE6B2A2BB4590073B151 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F458EE6D2A2BB4A90073B151 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
 		F458EE712A2BBA500073B151 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
+		F458EEAF2A2CC0280073B151 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		F458EEB12A2CDE2C0073B151 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +46,7 @@
 		F458EE4B2A2BB0B60073B151 = {
 			isa = PBXGroup;
 			children = (
+				F458EEAF2A2CC0280073B151 /* PostViewController.swift */,
 				F458EE562A2BB0B70073B151 /* Navigation */,
 				F458EE552A2BB0B70073B151 /* Products */,
 			);
@@ -59,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				F458EE572A2BB0B70073B151 /* AppDelegate.swift */,
+				F458EEB12A2CDE2C0073B151 /* Post.swift */,
 				F458EE592A2BB0B70073B151 /* SceneDelegate.swift */,
 				F458EE712A2BBA500073B151 /* ViewController1.swift */,
 				F458EE6B2A2BB4590073B151 /* ProfileViewController.swift */,
@@ -140,10 +146,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F458EEB02A2CC0280073B151 /* PostViewController.swift in Sources */,
 				F458EE582A2BB0B70073B151 /* AppDelegate.swift in Sources */,
 				F458EE722A2BBA500073B151 /* ViewController1.swift in Sources */,
 				F458EE6C2A2BB4590073B151 /* ProfileViewController.swift in Sources */,
 				F458EE5A2A2BB0B70073B151 /* SceneDelegate.swift in Sources */,
+				F458EEB22A2CDE2C0073B151 /* Post.swift in Sources */,
 				F458EE6E2A2BB4A90073B151 /* NewsFeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

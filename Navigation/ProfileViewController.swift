@@ -9,37 +9,22 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    let label = UILabel()
-    let pushButton = UIButton()
+    let userName = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = .white
         self.title = "Profile"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
 
-        self.label.text = "AAA"
-        self.view.addSubview(self.label)
-        self.label.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-        self.label.textColor = .black
+        self.userName.text = "Profile of John Smith"
+        self.view.addSubview(self.userName)
+        self.userName.frame = CGRect(x: 115, y: 150, width: 200, height: 100)
+        self.userName.textColor = .black
 
-        self.pushButton.setTitle("Go to the next", for: .normal)
-        self.view.addSubview(pushButton)
-        self.pushButton.frame = CGRect (
-            x: 50,
-            y: 150,
-            width: 150,
-            height: 100
-        )
-        self.pushButton.setTitleColor(.black, for: .normal)
-        self.pushButton.addTarget(self, action: #selector(hundleButtonTap), for: .touchUpInside)
+        self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 0)
+        UITabBar.appearance().backgroundColor = .red
 
-        self.tabBarItem.title = "Profile"
-    }
-
-    @objc
-    func hundleButtonTap() {
-        let newsVC = NewsFeedViewController()
-        self.navigationController?.pushViewController(newsVC, animated: true)
     }
 }
