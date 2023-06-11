@@ -23,7 +23,7 @@ class InfoViewController: UIViewController {
         alertButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
 
         alertButton.setTitleColor(.black, for: .normal)
-        alertButton.addTarget(self, action: #selector(hundleButtonTap), for: .touchUpInside)
+        alertButton.addTarget(self, action: #selector(alertButtonAction), for: .touchUpInside)
 
         return alertButton
     }()
@@ -36,7 +36,7 @@ class InfoViewController: UIViewController {
     }
 
     @objc
-    func hundleButtonTap() {
+    func alertButtonAction() {
 
         lazy var alertMessage = UIAlertController(title: "Alert", message: "Are you sure you want to do this?", preferredStyle: .alert)
 
