@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let newsVC = UINavigationController(rootViewController: NewsFeedViewController())
 
         let tabBarController = UITabBarController()
+        tabBarController.tabBar.backgroundColor = .systemGray3
         tabBarController.viewControllers = [
             profileVC,
             newsVC
