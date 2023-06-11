@@ -19,7 +19,6 @@ class PostViewController: UIViewController {
         barAddButton()
     }
 
-    @objc
     private func barAddButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem:

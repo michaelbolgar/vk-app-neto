@@ -46,7 +46,6 @@
 		F458EE4B2A2BB0B60073B151 = {
 			isa = PBXGroup;
 			children = (
-				F458EEAF2A2CC0280073B151 /* PostViewController.swift */,
 				F458EE562A2BB0B70073B151 /* Navigation */,
 				F458EE552A2BB0B70073B151 /* Products */,
 			);
@@ -68,6 +67,7 @@
 				F458EE6B2A2BB4590073B151 /* ProfileViewController.swift */,
 				F458EE6D2A2BB4A90073B151 /* NewsFeedViewController.swift */,
 				F458EEB32A2CEC3B0073B151 /* InfoViewController.swift */,
+				F458EEAF2A2CC0280073B151 /* PostViewController.swift */,
 				F458EEB12A2CDE2C0073B151 /* Post.swift */,
 				F458EE602A2BB0B90073B151 /* Assets.xcassets */,
 				F458EE622A2BB0B90073B151 /* LaunchScreen.storyboard */,

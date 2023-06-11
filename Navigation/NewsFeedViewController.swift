@@ -11,20 +11,11 @@ class NewsFeedViewController: UIViewController {
 
     var post = Post(title: "My trips")
 
-    private lazy var newsButton = UIButton()
+    private lazy var newsButton: UIButton = {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.view.backgroundColor = .systemBackground
-        self.title = "News"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-
-        self.tabBarItem = UITabBarItem(title: "News", image: UIImage(systemName: "newspaper"), tag: 0)
-
-        self.newsButton.setTitle("What's new?", for: .normal)
-        self.view.addSubview(newsButton)
-        self.newsButton.frame = CGRect (
+        let newsButton = UIButton()
+        newsButton.setTitle("What's new?", for: .normal)
+        newsButton.frame = CGRect (
             x: 100,
             y: 410,
             width: 200,
@@ -33,13 +24,25 @@ class NewsFeedViewController: UIViewController {
         newsButton.backgroundColor = .systemCyan
         newsButton.layer.cornerRadius = 12
         newsButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        newsButton.setTitleColor(.black, for: .normal)
+        newsButton.addTarget(self, action: #selector(newsButtonAction), for: .touchUpInside)
 
-        self.newsButton.setTitleColor(.black, for: .normal)
-        self.newsButton.addTarget(self, action: #selector(hundleButtonTap), for: .touchUpInside)
+        return newsButton
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.backgroundColor = .systemBackground
+        self.title = "News"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.tabBarItem = UITabBarItem(title: "News", image: UIImage(systemName: "newspaper"), tag: 0)
+
+        self.view.addSubview(newsButton)
     }
 
     @objc
-    func hundleButtonTap() {
+    private func newsButtonAction() {
         let postVC = PostViewController()
         self.navigationController?.pushViewController(postVC, animated: true)
         postVC.titlePost = post.title

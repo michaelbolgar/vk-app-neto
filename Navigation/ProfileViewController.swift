@@ -9,7 +9,15 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    let userName = UILabel()
+    private lazy var userName: UILabel = {
+
+        let userName = UILabel()
+        userName.frame = CGRect(x: 115, y: 150, width: 200, height: 100)
+        userName.text = "Profile of John Smith"
+        userName.textColor = .black
+
+        return userName
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,13 +26,8 @@ class ProfileViewController: UIViewController {
         self.title = "Profile"
         self.navigationController?.navigationBar.prefersLargeTitles = true
 
-        self.userName.text = "Profile of John Smith"
         self.view.addSubview(self.userName)
-        self.userName.frame = CGRect(x: 115, y: 150, width: 200, height: 100)
-        self.userName.textColor = .black
-
+        
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 0)
-        UITabBar.appearance().backgroundColor = .red
-
     }
 }
