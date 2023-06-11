@@ -23,11 +23,9 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = .white
-        self.title = "Profile"
         self.navigationController?.navigationBar.prefersLargeTitles = true
 
         self.view.addSubview(self.userName)
-        
-        self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 0)
+
     }
 }

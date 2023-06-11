@@ -34,9 +34,7 @@ class NewsFeedViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = .systemBackground
-        self.title = "News"
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.tabBarItem = UITabBarItem(title: "News", image: UIImage(systemName: "newspaper"), tag: 0)
 
         self.view.addSubview(newsButton)
     }
