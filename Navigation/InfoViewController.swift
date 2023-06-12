@@ -9,7 +9,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
-    let alertButton: UIButton = {
+    private lazy var alertButton: UIButton = {
         let alertButton = UIButton()
         alertButton.setTitle("Alert", for: .normal)
         alertButton.frame = CGRect (
