@@ -98,12 +98,6 @@ class ProfileHeaderView: UIView {
 
         statusText.text = UserDefaults.standard.string(forKey: "textUpdated") ?? "Waiting"
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_ :)), name: UserDefaults.didChangeNotification, object: nil)
-
-        //        let ud = UserDefaults.standard
-        //        statusText.text = String(ud.string(forKey: "Money") ?? "Waiting")
-        //        udObservation = ud.observe(\.Money, options: .new) {ud, change in
-        //            if let newValue = change.newValue {
-        //                self.statusText.text = String(newValue)
     }
 
     @objc private func userDefaultsDidChange(_ notification: Notification) {
@@ -117,6 +111,7 @@ class ProfileHeaderView: UIView {
         if let text = textField.text {
             print(text)
         }
+
         userDefaults.set(String(textField.text ?? "Waiting for something..."), forKey: "textUpdated")
                 let textAtPoint = userDefaults.string(forKey: "textUpdated")
     }
@@ -125,17 +120,4 @@ class ProfileHeaderView: UIView {
     private func statusTextChanged(_ textField: UITextField) {
         statusText1 = textField.text
     }
-
-//    override func didMoveToSuperview() {
-//        super.didMoveToSuperview()
-//    }
-//    override func didAddSubview(_ subview: UIView) {
-//        super.didAddSubview(subview)
-//    }
-//    override func willRemoveSubview(_ subview: UIView) {
-//        super.willRemoveSubview(subview)
-//    }
-//    override func willMove(toSuperview newSuperview: UIView?) {
-//        super.willMove(toSuperview: newSuperview)
-//    }
 }
