@@ -10,9 +10,18 @@ import UIKit
 class ProfileHeaderView: UIView {
 
     private lazy var catImage = UIImage(named: "userPhoto")
-    private lazy var userPhotoImageView: UIImageView = UIImageView()
-    private var statusText1: String?
-    let userDefaults = UserDefaults.standard
+
+    private var userPhotoImageView: UIImageView {
+        let userPhotoImageView = UIImageView()
+        userPhotoImageView.frame = CGRect(x: 16, y: 106, width: 110, height: 110)
+        userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
+        userPhotoImageView.layer.borderColor = UIColor.white.cgColor
+        userPhotoImageView.layer.borderWidth = 3
+        userPhotoImageView.contentMode = .scaleAspectFit
+        userPhotoImageView.clipsToBounds = true
+        userPhotoImageView.image = catImage
+        return userPhotoImageView
+    }
 
     private lazy var userName: UILabel = {
         let userName = UILabel()
@@ -66,7 +75,6 @@ class ProfileHeaderView: UIView {
             y: 185,
             width: 200,
             height: 40)
-        textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         return textField
     }()
 
@@ -85,39 +93,11 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        userPhotoImageView.frame = CGRect(x: 16, y: 106, width: 110, height: 110)
-        userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
-        userPhotoImageView.layer.borderColor = UIColor.white.cgColor
-        userPhotoImageView.layer.borderWidth = 3
-        userPhotoImageView.contentMode = .scaleAspectFit
-        userPhotoImageView.clipsToBounds = true
-        userPhotoImageView.image = catImage
-
-        statusText.text = UserDefaults.standard.string(forKey: "textUpdated") ?? "Waiting"
-        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_ :)), name: UserDefaults.didChangeNotification, object: nil)
-    }
-
-    @objc private func userDefaultsDidChange(_ notification: Notification) {
-        if let newValue = UserDefaults.standard.string(forKey: "textUpdated") {
-            statusText.text = newValue
-        }
-    }
-
     @objc
     private func setStatusButtonAction() {
         if let text = textField.text {
             print(text)
+            statusText.text = text
         }
-
-        userDefaults.set(String(textField.text ?? "Waiting for something..."), forKey: "textUpdated")
-                let textAtPoint = userDefaults.string(forKey: "textUpdated")
-    }
-
-    @objc
-    private func statusTextChanged(_ textField: UITextField) {
-        statusText1 = textField.text
     }
 }
