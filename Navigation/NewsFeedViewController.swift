@@ -11,32 +11,58 @@ class NewsFeedViewController: UIViewController {
 
     var post = Post(title: "My trips")
 
-    private lazy var newsButton: UIButton = {
-
-        let newsButton = UIButton()
-        newsButton.setTitle("What's new?", for: .normal)
-        newsButton.frame = CGRect (
-            x: 100,
-            y: 410,
-            width: 200,
-            height: 70
-        )
-        newsButton.backgroundColor = .systemCyan
-        newsButton.layer.cornerRadius = 12
-        newsButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        newsButton.setTitleColor(.black, for: .normal)
-        newsButton.addTarget(self, action: #selector(newsButtonAction), for: .touchUpInside)
-
-        return newsButton
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .center
+        stackView.spacing = 10
+        return stackView
     }()
+
+    private lazy var newsButton1: UIButton = {
+        let newsButton1 = UIButton()
+        newsButton1.setTitle("What's new?", for: .normal)
+        newsButton1.backgroundColor = .systemCyan
+        newsButton1.layer.cornerRadius = 12
+        newsButton1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        newsButton1.setTitleColor(.black, for: .normal)
+        newsButton1.addTarget(self, action: #selector(newsButtonAction), for: .touchUpInside)
+        return newsButton1
+        }()
+
+    private lazy var newsButton2: UIButton = {
+        let newsButton2 = UIButton()
+        newsButton2.setTitle("Show post", for: .normal)
+        newsButton2.backgroundColor = .systemCyan
+        newsButton2.layer.cornerRadius = 12
+        newsButton2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        newsButton2.setTitleColor(.black, for: .normal)
+        newsButton2.addTarget(self, action: #selector(newsButtonAction), for: .touchUpInside)
+        return newsButton2
+    }()
+
+    private func newsFeedVCLayout() {
+        view.addSubview(stackView)
+
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.widthAnchor.constraint(equalToConstant: 250),
+            stackView.heightAnchor.constraint(equalToConstant: 150)
+        ])
+
+        stackView.addArrangedSubview(newsButton1)
+        stackView.addArrangedSubview(newsButton2)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.view.backgroundColor = .systemBackground
         self.navigationController?.navigationBar.prefersLargeTitles = true
-
-        self.view.addSubview(newsButton)
+        newsFeedVCLayout()
+//        self.view.addSubview(newsButton)
     }
 
     @objc

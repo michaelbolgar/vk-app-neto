@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func createTabBarController() -> UITabBarController {
 
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.backgroundColor = .systemGray
+        tabBarController.tabBar.backgroundColor = .systemTeal
 
         tabBarController.viewControllers = [
             createProfileViewController(),
