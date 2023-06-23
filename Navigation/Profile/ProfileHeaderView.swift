@@ -58,6 +58,16 @@ class ProfileHeaderView: UIView {
         return showStatusButton
     }()
 
+    @objc
+    private func setStatusButtonAction() {
+        if let text = textField.text {
+            print(text)
+            statusText.text = text
+            textField.text = ""
+        }
+        self.endEditing(true)
+    }
+
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
@@ -81,6 +91,51 @@ class ProfileHeaderView: UIView {
         return lightButton
     }()
 
+    @objc
+    private func lightButtonAction() {
+        print ("lightButton touched")
+        self.backgroundColor = .systemGray
+        statusText.textColor = .white
+    }
+
+    private var isPortraitOrientation: Bool {
+        return UIDevice.current.orientation == .portrait
+    }
+
+    private var portraitLayout = [NSLayoutConstraint]()
+    private var landscapeLayout = [NSLayoutConstraint]()
+
+    private func isPortrait() {
+        isPortraitOrientation ? activatePortrait() : activateLandscape()
+    }
+
+    private func activatePortrait() {
+        NSLayoutConstraint.deactivate(landscapeLayout)
+        NSLayoutConstraint.activate(portraitLayout)
+    }
+
+    private func activateLandscape() {
+        NSLayoutConstraint.deactivate(portraitLayout)
+        NSLayoutConstraint.activate(landscapeLayout)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        isPortrait()
+        //сделать изображение профиля вновь круглым -- второй способ
+//        userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
+    }
+
+    override init (frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .systemGray3
+        layout()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     private func layout() {
 
         addSubview(userPhotoImageView)
@@ -90,8 +145,21 @@ class ProfileHeaderView: UIView {
         addSubview(showStatusButton)
         addSubview(lightButton)
 
+        //общие констрейнты, которые не будут зависеть от ориентации экрана
         NSLayoutConstraint.activate([
 
+            showStatusButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 15),
+            showStatusButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            showStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            showStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            showStatusButton.heightAnchor.constraint(equalToConstant: 50),
+
+            lightButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            lightButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            lightButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+        ])
+
+        portraitLayout = [
             userPhotoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             userPhotoImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             userPhotoImageView.heightAnchor.constraint(equalToConstant: photoSize),
@@ -105,37 +173,27 @@ class ProfileHeaderView: UIView {
 
             textField.topAnchor.constraint(equalTo: statusText.bottomAnchor, constant: 10),
             textField.leadingAnchor.constraint(equalTo: statusText.leadingAnchor, constant: 0),
-            textField.widthAnchor.constraint(equalToConstant: 200),
+            textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             textField.heightAnchor.constraint(equalToConstant: 40),
+            ]
 
-            showStatusButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 15),
-            showStatusButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            showStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            showStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50),
+        landscapeLayout = [
+            userPhotoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            userPhotoImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 80),
+            userPhotoImageView.heightAnchor.constraint(equalToConstant: photoSize),
+            userPhotoImageView.widthAnchor.constraint(equalToConstant: photoSize),
 
-            lightButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            lightButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            lightButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+            userName.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            userName.leadingAnchor.constraint(equalTo: userPhotoImageView.trailingAnchor, constant: 30),
 
-        ])
-    }
+            statusText.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 30),
+            statusText.leadingAnchor.constraint(equalTo: userPhotoImageView.trailingAnchor, constant: 30),
 
-    //сделать изображение профиля вновь круглым
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
-//    }
-
-    override init (frame: CGRect) {
-        super.init(frame: frame)
-
-        backgroundColor = .systemGray3
-        layout()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+            textField.topAnchor.constraint(equalTo: statusText.bottomAnchor, constant: 10),
+            textField.leadingAnchor.constraint(equalTo: userPhotoImageView.trailingAnchor, constant: 30),
+            textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            textField.heightAnchor.constraint(equalToConstant: 40),
+        ]
     }
 
     //скрыть клавиатуру при нажатии в любом месте экрана
@@ -144,22 +202,5 @@ class ProfileHeaderView: UIView {
             self.endEditing(true)
         }
         super .touchesBegan(touches, with: event)
-    }
-
-    @objc
-    private func setStatusButtonAction() {
-        if let text = textField.text {
-            print(text)
-            statusText.text = text
-            textField.text = ""
-        }
-        self.endEditing(true)
-    }
-
-    @objc
-    private func lightButtonAction() {
-        print ("lightButton touched")
-        self.backgroundColor = .systemGray
-        statusText.textColor = .white
     }
 }
