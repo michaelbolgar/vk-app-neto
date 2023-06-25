@@ -11,6 +11,7 @@ class NewsFeedViewController: UIViewController {
 
     var post = Post(title: "My trips")
 
+    //добавление двух кнопок в стэк вью лучше перенести в замыкание самого стэка
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +63,6 @@ class NewsFeedViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
         self.navigationController?.navigationBar.prefersLargeTitles = true
         newsFeedVCLayout()
-//        self.view.addSubview(newsButton)
     }
 
     @objc

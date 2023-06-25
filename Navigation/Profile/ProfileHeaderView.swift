@@ -9,11 +9,16 @@ import UIKit
 
 class ProfileHeaderView: UIView {
 
-    private lazy var catImage = UIImage(named: "userPhoto")
     private let photoSize: CGFloat = 110
+    private var portraitLayout = [NSLayoutConstraint]()
+    private var landscapeLayout = [NSLayoutConstraint]()
+    private var isPortraitOrientation: Bool {
+        return bounds.size.width < bounds.size.height
+    }
 
     private lazy var userPhotoImageView: UIImageView = {
         let userPhotoImageView = UIImageView()
+        let catImage = UIImage(named: "userPhoto")
         userPhotoImageView.layer.cornerRadius = photoSize / 2
         userPhotoImageView.layer.borderColor = UIColor.white.cgColor
         userPhotoImageView.layer.borderWidth = 3
@@ -58,16 +63,6 @@ class ProfileHeaderView: UIView {
         return showStatusButton
     }()
 
-    @objc
-    private func setStatusButtonAction() {
-        if let text = textField.text {
-            print(text)
-            statusText.text = text
-            textField.text = ""
-        }
-        self.endEditing(true)
-    }
-
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
@@ -91,41 +86,6 @@ class ProfileHeaderView: UIView {
         return lightButton
     }()
 
-    @objc
-    private func lightButtonAction() {
-        print ("lightButton touched")
-        self.backgroundColor = .systemGray
-        statusText.textColor = .white
-    }
-
-    private var isPortraitOrientation: Bool {
-        return UIDevice.current.orientation == .portrait
-    }
-
-    private var portraitLayout = [NSLayoutConstraint]()
-    private var landscapeLayout = [NSLayoutConstraint]()
-
-    private func isPortrait() {
-        isPortraitOrientation ? activatePortrait() : activateLandscape()
-    }
-
-    private func activatePortrait() {
-        NSLayoutConstraint.deactivate(landscapeLayout)
-        NSLayoutConstraint.activate(portraitLayout)
-    }
-
-    private func activateLandscape() {
-        NSLayoutConstraint.deactivate(portraitLayout)
-        NSLayoutConstraint.activate(landscapeLayout)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        isPortrait()
-        //сделать изображение профиля вновь круглым -- второй способ
-//        userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height/2
-    }
-
     override init (frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemGray3
@@ -136,8 +96,28 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func layout() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        activateInitialLayoutConstraints()
+    }
 
+    //скрыть клавиатуру при нажатии в любом месте экрана
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if touches.first != nil {
+            self.endEditing(true)
+        }
+        super .touchesBegan(touches, with: event)
+    }
+
+    private func activateInitialLayoutConstraints() {
+            if isPortraitOrientation {
+                NSLayoutConstraint.activate(portraitLayout)
+            } else {
+                NSLayoutConstraint.activate(landscapeLayout)
+            }
+        }
+
+    private func layout() {
         addSubview(userPhotoImageView)
         addSubview(userName)
         addSubview(statusText)
@@ -147,7 +127,6 @@ class ProfileHeaderView: UIView {
 
         //общие констрейнты, которые не будут зависеть от ориентации экрана
         NSLayoutConstraint.activate([
-
             showStatusButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 15),
             showStatusButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             showStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -175,6 +154,7 @@ class ProfileHeaderView: UIView {
             textField.leadingAnchor.constraint(equalTo: statusText.leadingAnchor, constant: 0),
             textField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             textField.heightAnchor.constraint(equalToConstant: 40),
+            //добавить размер лейбла, чтоб не обрезался
             ]
 
         landscapeLayout = [
@@ -196,11 +176,20 @@ class ProfileHeaderView: UIView {
         ]
     }
 
-    //скрыть клавиатуру при нажатии в любом месте экрана
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if touches.first != nil {
-            self.endEditing(true)
+    @objc
+    private func setStatusButtonAction() {
+        if let text = textField.text {
+            print(text)
+            statusText.text = text
+            textField.text = ""
         }
-        super .touchesBegan(touches, with: event)
+        self.endEditing(true)
+    }
+
+    @objc
+    private func lightButtonAction() {
+        print ("lightButton touched")
+        self.backgroundColor = .systemGray
+        statusText.textColor = .white
     }
 }
