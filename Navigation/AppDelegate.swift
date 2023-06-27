@@ -19,13 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func createProfileViewController() -> UINavigationController {
-        let profileVC = ProfileViewController()
-        profileVC.title = "Profile"
-        profileVC.tabBarItem = UITabBarItem (title: "Profile", image: UIImage(systemName: "person"), tag: 0)
-        return UINavigationController(rootViewController: profileVC)
-    }
-
     func createNewsFeedViewController() -> UINavigationController {
         let newsVC = NewsFeedViewController()
         newsVC.title = "News"
@@ -33,12 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UINavigationController(rootViewController: newsVC)
     }
 
+    func createProfileViewController() -> UINavigationController {
+        let loginVC = LoginViewController()
+        loginVC.tabBarItem = UITabBarItem (title: "Profile", image: UIImage(systemName: "person"), tag: 0)
+        return UINavigationController(rootViewController: loginVC)
+    }
+
     func createTabBarController() -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.tabBar.backgroundColor = .systemTeal
         tabBarController.viewControllers = [
-            createProfileViewController(),
-            createNewsFeedViewController()
+            createNewsFeedViewController(),
+            createProfileViewController()
         ]
         return tabBarController
     }
