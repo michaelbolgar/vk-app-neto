@@ -81,7 +81,6 @@ class LoginViewController: UIViewController {
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         loginButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         loginButton.layer.cornerRadius = 10
-        loginButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
         loginButton.layer.masksToBounds = true
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
@@ -159,7 +158,7 @@ class LoginViewController: UIViewController {
             loginTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginTextField.heightAnchor.constraint(equalToConstant: 50),
 
-            passwortTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 0),
+            passwortTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: -0.5),
             passwortTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             passwortTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             passwortTextField.heightAnchor.constraint(equalToConstant: 50),
@@ -167,7 +166,7 @@ class LoginViewController: UIViewController {
             loginButton.topAnchor.constraint(equalTo: passwortTextField.bottomAnchor, constant: 16),
             loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100), //вопрос: как это вяжется с общей вёрсткой? этот констрейнт добавлен только ради того чтобы скроллвью работал, но на расположение он не влияет (даже если менять значение константы). Все понимают, что этот констрейнт нужен только для скроллвью? Нужно ли снизить ему приоритетность?
+            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
             loginButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -182,7 +181,8 @@ class LoginViewController: UIViewController {
     @objc
     private func keyboardShow(notification: NSNotification) {
         if let keyboardSize: CGRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            scrollView.contentInset.bottom = keyboardSize.height
+            let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+            scrollView.contentInset.bottom = keyboardSize.height + 75
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0,
                                                                     left: 0,
                                                                     bottom: keyboardSize.height,
