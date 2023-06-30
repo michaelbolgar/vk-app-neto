@@ -1,8 +1,8 @@
 //
-//  PostCell Identifier.swift
+//  NewPostCell Extension.swift
 //  Navigation
 //
-//  Created by Михаил Болгар on 29.06.2023.
+//  Created by Михаил Болгар on 30.06.2023.
 //
 
 import UIKit
@@ -12,3 +12,4 @@ extension NewPostCell {
         String(describing: self)
     }
 }
+

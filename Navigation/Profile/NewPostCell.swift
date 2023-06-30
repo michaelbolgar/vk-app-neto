@@ -1,8 +1,8 @@
 //
-//  PostCell.swift
+//  NewPostCell.swift
 //  Navigation
 //
-//  Created by Михаил Болгар on 28.06.2023.
+//  Created by Михаил Болгар on 30.06.2023.
 //
 
 import UIKit
@@ -111,3 +111,4 @@ final class NewPostCell: UITableViewCell {
         ])
     }
 }
+
