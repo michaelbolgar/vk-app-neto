@@ -20,6 +20,11 @@
 		F458EEB02A2CC0280073B151 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EEAF2A2CC0280073B151 /* PostViewController.swift */; };
 		F458EEB22A2CDE2C0073B151 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EEB12A2CDE2C0073B151 /* Post.swift */; };
 		F458EEB42A2CEC3B0073B151 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EEB32A2CEC3B0073B151 /* InfoViewController.swift */; };
+		F4B307E92A4E4E550037B89C /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B307E82A4E4E550037B89C /* PhotosTableViewCell.swift */; };
+		F4B307ED2A4E56230037B89C /* Photos Databank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B307EC2A4E56230037B89C /* Photos Databank.swift */; };
+		F4B307EF2A4E59570037B89C /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B307EE2A4E59570037B89C /* PhotoCollectionViewController.swift */; };
+		F4B307F22A4E5AFD0037B89C /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B307F12A4E5AFD0037B89C /* PhotosCollectionViewCell.swift */; };
+		F4B307F42A4E5C470037B89C /* PhotoCell Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B307F32A4E5C470037B89C /* PhotoCell Extension.swift */; };
 		F4EBB5552A363A6D00545092 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +44,11 @@
 		F458EEAF2A2CC0280073B151 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		F458EEB12A2CDE2C0073B151 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F458EEB32A2CEC3B0073B151 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		F4B307E82A4E4E550037B89C /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		F4B307EC2A4E56230037B89C /* Photos Databank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photos Databank.swift"; sourceTree = "<group>"; };
+		F4B307EE2A4E59570037B89C /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		F4B307F12A4E5AFD0037B89C /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		F4B307F32A4E5C470037B89C /* PhotoCell Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoCell Extension.swift"; sourceTree = "<group>"; };
 		F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +104,17 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		F4B307F02A4E5A340037B89C /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				F4B307EE2A4E59570037B89C /* PhotoCollectionViewController.swift */,
+				F4B307F12A4E5AFD0037B89C /* PhotosCollectionViewCell.swift */,
+				F4B307F32A4E5C470037B89C /* PhotoCell Extension.swift */,
+				F4B307EC2A4E56230037B89C /* Photos Databank.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
 		F4EBB5532A363A4100545092 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +124,8 @@
 				F449693E2A4D143A00D01BB0 /* Post Databank.swift */,
 				F44969382A4BC16800D01BB0 /* PostCell.swift */,
 				F44969422A4DCA9700D01BB0 /* PostCell Identifier.swift */,
+				F4B307E82A4E4E550037B89C /* PhotosTableViewCell.swift */,
+				F4B307F02A4E5A340037B89C /* Gallery */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -182,11 +205,16 @@
 				F44969392A4BC16800D01BB0 /* PostCell.swift in Sources */,
 				F458EE582A2BB0B70073B151 /* AppDelegate.swift in Sources */,
 				F458EE6C2A2BB4590073B151 /* ProfileViewController.swift in Sources */,
+				F4B307ED2A4E56230037B89C /* Photos Databank.swift in Sources */,
+				F4B307F42A4E5C470037B89C /* PhotoCell Extension.swift in Sources */,
 				F458EE5A2A2BB0B70073B151 /* SceneDelegate.swift in Sources */,
 				F458EEB22A2CDE2C0073B151 /* Post.swift in Sources */,
 				F44969432A4DCA9700D01BB0 /* PostCell Identifier.swift in Sources */,
 				F458EEB42A2CEC3B0073B151 /* InfoViewController.swift in Sources */,
+				F4B307EF2A4E59570037B89C /* PhotoCollectionViewController.swift in Sources */,
+				F4B307E92A4E4E550037B89C /* PhotosTableViewCell.swift in Sources */,
 				F458EE6E2A2BB4A90073B151 /* NewsFeedViewController.swift in Sources */,
+				F4B307F22A4E5AFD0037B89C /* PhotosCollectionViewCell.swift in Sources */,
 				F449693F2A4D143A00D01BB0 /* Post Databank.swift in Sources */,
 				F4EBB5552A363A6D00545092 /* ProfileHeaderView.swift in Sources */,
 			);

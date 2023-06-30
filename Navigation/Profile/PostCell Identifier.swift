@@ -7,8 +7,8 @@
 
 import UIKit
 
-extension NewPostCell {
-    static var identifier: String {
-        String(describing: self)
-    }
-}
+//extension NewPostCell {
+//    static var identifier: String {
+//        String(describing: self)
+//    }
+//}

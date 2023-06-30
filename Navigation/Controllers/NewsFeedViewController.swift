@@ -67,8 +67,10 @@ class NewsFeedViewController: UIViewController {
 
     @objc
     private func newsButtonAction() {
-        let postVC = PostViewController()
-        self.navigationController?.pushViewController(postVC, animated: true)
-        postVC.titlePost = post.title
+//        let postVC = PostViewController()
+//        self.navigationController?.pushViewController(postVC, animated: true)
+//        postVC.titlePost = post.title
+        let gallery = PhotosViewController()
+        self.navigationController?.pushViewController(gallery, animated: true)
     }
 }
