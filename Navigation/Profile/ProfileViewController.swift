@@ -28,6 +28,7 @@ final class ProfileViewController: UIViewController {
         }
 
     private func layout() {
+        view.backgroundColor = .systemGray4
         view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
@@ -51,10 +52,9 @@ extension ProfileViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewPostCell.identifier, for: indexPath) as? NewPostCell
-        else { fatalError("Unable to dequeue NewPostCell")}
-        cell.setupCell(post: newPost[indexPath.row])
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewPostCell.identifier, for: indexPath) as? NewPostCell
+            cell?.setupCell(post: newPost[indexPath.row])
+            return cell ?? UITableViewCell()
     }
 }
 
@@ -74,4 +74,8 @@ extension ProfileViewController: UITableViewDelegate {
             }
             return 0
         }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
