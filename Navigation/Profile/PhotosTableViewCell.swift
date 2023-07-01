@@ -9,24 +9,6 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
 
-    func createImageView() -> UIImageView {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 6
-        return imageView
-    }
-
-//    private let image: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.contentMode = .scaleAspectFill
-//        imageView.clipsToBounds = true
-//        imageView.layer.cornerRadius = 6
-//        return imageView
-//    }()
-
     private let arrowImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +36,7 @@ class PhotosTableViewCell: UITableViewCell {
         for i in 1...4 {
             let imageView = createImageView()
             imageView.backgroundColor = .red
-            imageView.image = UIImage(named: "galleryPhoto\(i)") ?? UIImage(named: "noPhoto") ?? UIImage();            stackView.addArrangedSubview(imageView)
+            imageView.image = UIImage(named: "galleryPhoto\(i)") ?? UIImage(named: "noPhoto") ?? UIImage(); stackView.addArrangedSubview(imageView)
 
             let inset: CGFloat = 12
             let insetBetweenPhotos: CGFloat = 8
@@ -74,6 +56,15 @@ class PhotosTableViewCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func createImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 6
+        return imageView
     }
 
     func customizeCell(photo: Photo) {
