@@ -36,7 +36,8 @@ class PhotosTableViewCell: UITableViewCell {
         for i in 1...4 {
             let imageView = createImageView()
             imageView.backgroundColor = .red
-            imageView.image = UIImage(named: "galleryPhoto\(i)") ?? UIImage(named: "noPhoto") ?? UIImage(); stackView.addArrangedSubview(imageView)
+            imageView.image = UIImage(named: "galleryPhoto\(i)") ?? UIImage(named: "noPhoto") ?? UIImage()
+            stackView.addArrangedSubview(imageView)
 
             let inset: CGFloat = 12
             let insetBetweenPhotos: CGFloat = 8
