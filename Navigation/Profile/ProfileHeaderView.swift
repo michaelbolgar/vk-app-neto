@@ -44,8 +44,9 @@ class ProfileHeaderView: UIView {
 
     private lazy var showStatusButton: UIButton = {
         let showStatusButton = UIButton()
+        let colorSet = UIColor(rgb: 0x4885CC)
         showStatusButton.setTitle("Set status", for: .normal)
-        showStatusButton.backgroundColor = .systemBlue
+        showStatusButton.backgroundColor = colorSet
         showStatusButton.layer.cornerRadius = 4
         showStatusButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         showStatusButton.setTitleColor(.white, for: .normal)
@@ -76,7 +77,7 @@ class ProfileHeaderView: UIView {
 
     override init (frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemGray4
+        backgroundColor = .systemGray5
         layout()
     }
 

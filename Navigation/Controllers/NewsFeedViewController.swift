@@ -11,14 +11,15 @@ class NewsFeedViewController: UIViewController {
 
     var post = Post(title: "My trips")
 
-    //добавление двух кнопок в стэк вью лучше перенести в замыкание самого стэка
-    private let stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.alignment = .center
         stackView.spacing = 10
+        stackView.addArrangedSubview(newsButton1)
+        stackView.addArrangedSubview(newsButton2)
         return stackView
     }()
 
@@ -54,8 +55,6 @@ class NewsFeedViewController: UIViewController {
             stackView.heightAnchor.constraint(equalToConstant: 150)
         ])
 
-        stackView.addArrangedSubview(newsButton1)
-        stackView.addArrangedSubview(newsButton2)
     }
 
     override func viewDidLoad() {
@@ -66,9 +65,9 @@ class NewsFeedViewController: UIViewController {
     }
 
     @objc
-    private func newsButtonAction() {
-        let postVC = PostViewController()
-        self.navigationController?.pushViewController(postVC, animated: true)
-        postVC.titlePost = post.title
-    }
-}
+     private func newsButtonAction() {
+         let postVC = PostViewController()
+         self.navigationController?.pushViewController(postVC, animated: true)
+         postVC.titlePost = post.title
+     }
+ }
