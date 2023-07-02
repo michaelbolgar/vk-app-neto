@@ -96,9 +96,13 @@ extension ProfileViewController: UITableViewDelegate {
         }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
 
-            let gallery = PhotosViewController()
-            self.navigationController?.pushViewController(gallery, animated: true)
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let gallery = PhotosViewController()
+                self.navigationController?.pushViewController(gallery, animated: true)
+            }
+        }
     }
 }

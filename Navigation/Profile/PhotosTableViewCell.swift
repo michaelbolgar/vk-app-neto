@@ -32,22 +32,6 @@ class PhotosTableViewCell: UITableViewCell {
         stackView.distribution = .fillEqually
         stackView.alignment = .center
         stackView.spacing = 8
-
-        for i in 1...4 {
-            let imageView = createImageView()
-            imageView.backgroundColor = .red
-            imageView.image = UIImage(named: "galleryPhoto\(i)") ?? UIImage(named: "noPhoto") ?? UIImage()
-            stackView.addArrangedSubview(imageView)
-
-            let inset: CGFloat = 12
-            let insetBetweenPhotos: CGFloat = 8
-            let width = (contentView.bounds.width - insetBetweenPhotos * 3 - inset * 2) / 4
-
-            NSLayoutConstraint.activate([
-                imageView.widthAnchor.constraint(equalToConstant: width),
-                imageView.heightAnchor.constraint(equalToConstant: width)
-            ])
-        }
         return stackView
     }()
 
@@ -59,6 +43,11 @@ class PhotosTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+    }
+
     func createImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,14 +57,25 @@ class PhotosTableViewCell: UITableViewCell {
         return imageView
     }
 
+    private func setupStack() {
+        for i in 1...4 {
+            let imageView = createImageView()
+            imageView.image = UIImage(named: "galleryPhoto\(i)") ?? UIImage(named: "noPhoto") ?? UIImage()
+            photoStackView.addArrangedSubview(imageView)
+        }
+    }
+
     func customizeCell(photo: Photo) {
 
         arrowImage.image = UIImage(systemName: "arrow.right")
         contentView.addSubview(photoGalleryLabel)
         contentView.addSubview(photoStackView)
         contentView.addSubview(arrowImage)
+        setupStack()
 
         let inset: CGFloat = 12
+        let insetBetweenPhotos: CGFloat = 8
+        let width = (contentView.bounds.width - insetBetweenPhotos * 3 - inset * 2) / 4
 
         NSLayoutConstraint.activate([
 
@@ -91,6 +91,7 @@ class PhotosTableViewCell: UITableViewCell {
             photoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
             photoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
             photoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
+            photoStackView.heightAnchor.constraint(equalToConstant: width)
 
         ])
     }
