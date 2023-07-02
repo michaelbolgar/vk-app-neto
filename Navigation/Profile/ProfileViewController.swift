@@ -99,10 +99,8 @@ extension ProfileViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if indexPath.section == 0 {
-            if indexPath.row == 0 {
                 let gallery = PhotosViewController()
                 self.navigationController?.pushViewController(gallery, animated: true)
-            }
         }
     }
 }

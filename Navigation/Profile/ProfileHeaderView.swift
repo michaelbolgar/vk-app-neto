@@ -11,9 +11,10 @@ class ProfileHeaderView: UIView {
 
     private let photoSize: CGFloat = 110
 
-    private lazy var userPhotoImageView: UIImageView = {
+    lazy var userPhotoImageView: UIImageView = {
         let userPhotoImageView = UIImageView()
         let catImage = UIImage(named: "userPhoto")
+
         userPhotoImageView.layer.cornerRadius = photoSize / 2
         userPhotoImageView.layer.borderColor = UIColor.white.cgColor
         userPhotoImageView.layer.borderWidth = 3
@@ -85,7 +86,7 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-//    скрыть клавиатуру при нажатии в любом месте экрана
+    //    скрыть клавиатуру при нажатии в любом месте экрана
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if touches.first != nil {
             self.endEditing(true)

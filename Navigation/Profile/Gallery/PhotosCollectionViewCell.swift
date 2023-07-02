@@ -9,7 +9,7 @@ import UIKit
 
 final class PhotosCollectionViewCell: UICollectionViewCell {
 
-    private let image: UIImageView = {
+    lazy var image: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
@@ -43,6 +43,5 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
             image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
 
         ])
-        
     }
 }

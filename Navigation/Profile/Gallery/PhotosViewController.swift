@@ -14,7 +14,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-
         let photosCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         photosCollectionView.translatesAutoresizingMaskIntoConstraints = false
         photosCollectionView.backgroundColor = .white
@@ -23,6 +22,17 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         photosCollectionView.delegate = self
         return photosCollectionView
     }()
+
+    private lazy var groundView: UIView = {
+        let groundView = UIView()
+        groundView.translatesAutoresizingMaskIntoConstraints = false
+        groundView.backgroundColor = .black
+        groundView.alpha = 0
+        return groundView
+    }()
+
+    private var leadingImageView = NSLayoutConstraint()
+    private var topImageView = NSLayoutConstraint()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +48,19 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
     private func layout() {
         view.addSubview(collectionView)
         view.backgroundColor = .systemGray5
+        view.addSubview(groundView)
 
         NSLayoutConstraint.activate([
 
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+            groundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            groundView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            groundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            groundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
 
         ])
     }
@@ -82,5 +98,48 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         inset
+    }
+
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let expandedCell = PhotosTableViewCell()
+//        self.view.addSubview(expandedCell)
+//        expandedCell.imageExpandedCell.image = images[indexPath.item]
+//        navigationController?.navigationBar.isHidden = true
+//        NSLayoutConstraint.activate([
+//            expandedCell.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            expandedCell.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            expandedCell.topAnchor.constraint(equalTo: view.topAnchor),
+//            expandedCell.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
+//        UIView.animate(withDuration: 0.1, animations: {
+//            self.view.layoutIfNeeded()
+//        }) { _ in
+//            UIView.animate(withDuration: 0.3) {
+//                expandedCell.buttonCancel.alpha = 1
+//                expandedCell.backgroundColor = .black.withAlphaComponent(0.8)
+//            }
+//        }
+//    }
+//}
+
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        if let cell = collectionView.cellForItem(at: indexPath) as? PhotosCollectionViewCell {
+            collectionView.bringSubviewToFront(cell)
+            UIView.animate(withDuration: 0.5) {
+
+                let screenWidth = UIScreen.main.bounds.width
+//                let screenHeight = UIScreen.main.bounds.height
+
+                let aspectRatio = cell.image.bounds.width / cell.image.bounds.height
+                let newHeight = screenWidth / aspectRatio
+
+                cell.image.transform = CGAffineTransform(scaleX: screenWidth / cell.image.bounds.width, y: newHeight / cell.image.bounds.height)
+
+                self.groundView.backgroundColor = .black.withAlphaComponent(0.5)
+                self.groundView.alpha = 0.5
+            }
+        }
     }
 }
