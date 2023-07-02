@@ -84,6 +84,16 @@ class LoginViewController: UIViewController {
         return loginButton
     }()
 
+    private lazy var wrongFieldMessage: UILabel = {
+        let wrongFieldMessage = UILabel()
+        wrongFieldMessage.translatesAutoresizingMaskIntoConstraints = false
+        wrongFieldMessage.textColor = .systemRed
+        wrongFieldMessage.text = "Password must be at least 6 characters long"
+        wrongFieldMessage.font = UIFont.boldSystemFont(ofSize: 12)
+        wrongFieldMessage.isHidden = true
+        return wrongFieldMessage
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -125,12 +135,42 @@ class LoginViewController: UIViewController {
         }
     }
 
+    private func isLoginFieldValid() -> Bool {
+        if loginTextField.text?.isEmpty ?? true {
+            return false
+        }
+        return true
+    }
+
+    private func isPasswordFieldValid() -> Bool {
+        if passwortTextField.text?.isEmpty ?? true {
+            return false
+        }
+        if ((passwortTextField.text?.count ?? -1) < 6) {
+            return false
+        }
+        return true
+    }
+
+    func wrongTextField(_ textField: UITextField) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.1
+        animation.repeatCount = 2
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: textField.center.x - 5, y: textField.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: textField.center.x + 5, y: textField.center.y))
+        textField.layer.add(animation, forKey: "position")
+    }
+
     private func loginViewControllerLayout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        [logoImage, loginTextField, passwortTextField, loginButton].forEach { contentView.addSubview($0) }
+        [logoImage, loginTextField, passwortTextField, loginButton, wrongFieldMessage].forEach { contentView.addSubview($0) }
+
         configureButtonAppearance(for: .normal)
         configureButtonAppearance(for: .highlighted)
+
+        let inset: CGFloat = 16
 
         NSLayoutConstraint.activate([
 
@@ -151,17 +191,20 @@ class LoginViewController: UIViewController {
             logoImage.heightAnchor.constraint(equalToConstant: 100),
 
             loginTextField.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 120),
-            loginTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            loginTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            loginTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            loginTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
             loginTextField.heightAnchor.constraint(equalToConstant: 50),
 
             passwortTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: -0.5),
-            passwortTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            passwortTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            passwortTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            passwortTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
             passwortTextField.heightAnchor.constraint(equalToConstant: 50),
 
-            loginButton.topAnchor.constraint(equalTo: passwortTextField.bottomAnchor, constant: 16),
-            loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            wrongFieldMessage.topAnchor.constraint(equalTo: passwortTextField.bottomAnchor, constant: 9),
+            wrongFieldMessage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+
+            loginButton.topAnchor.constraint(equalTo: wrongFieldMessage.bottomAnchor, constant: 9),
+            loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
             loginButton.heightAnchor.constraint(equalToConstant: 50)
@@ -171,8 +214,24 @@ class LoginViewController: UIViewController {
     @objc
     private func loginButtonAction() {
         let profileViewController = ProfileViewController()
-        self.navigationController?.pushViewController(profileViewController, animated: true)
-        view.endEditing(true)
+        if ((passwortTextField.text?.count ?? -1) < 6) {
+            wrongFieldMessage.isHidden = false
+            wrongTextField(passwortTextField)
+        } else {
+            wrongFieldMessage.isHidden = true
+        }
+        if !isPasswordFieldValid() {
+            wrongTextField(passwortTextField)
+        }
+        if !isLoginFieldValid() {
+            wrongTextField(loginTextField)
+        }
+        if loginTextField.text == "simona@gmail.com" && passwortTextField.text == "123456" {
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+            view.endEditing(true)
+        } else {
+            alertMessage()
+        }
     }
 
     @objc
@@ -190,6 +249,18 @@ class LoginViewController: UIViewController {
     private func keyboardHide() {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
+    }
+
+    @objc
+    func alertMessage() {
+
+        lazy var alertMessage = UIAlertController(title: "Error", message: "Incorrect email and/or passwort", preferredStyle: .alert)
+
+        lazy var okButton = UIAlertAction (title: "Ok", style: .default, handler: { (action) -> Void in print ("Ok button tapped")
+        })
+
+        self.present(alertMessage, animated: true, completion: nil)
+        alertMessage.addAction(okButton)
     }
 }
 
