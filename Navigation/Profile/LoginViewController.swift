@@ -152,7 +152,7 @@ class LoginViewController: UIViewController {
         return true
     }
 
-    func wrongTextField(_ textField: UITextField) {
+    private func wrongTextField(_ textField: UITextField) {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.1
         animation.repeatCount = 2
@@ -226,7 +226,7 @@ class LoginViewController: UIViewController {
         if !isLoginFieldValid() {
             wrongTextField(loginTextField)
         }
-        if loginTextField.text == "simona@gmail.com" && passwortTextField.text == "123456" {
+        if loginTextField.text == "simona" && passwortTextField.text == "123456" {
             self.navigationController?.pushViewController(profileViewController, animated: true)
             view.endEditing(true)
         } else {
