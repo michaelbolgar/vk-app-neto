@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F40B989A2A52D8CF002F8CFA /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B98992A52D8CF002F8CFA /* PostDetailViewController.swift */; };
+		F40B989E2A532A93002F8CFA /* ScaledPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B989D2A532A93002F8CFA /* ScaledPhoto.swift */; };
 		F440263B2A4906D700F7E426 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440263A2A4906D700F7E426 /* LoginViewController.swift */; };
 		F449693F2A4D143A00D01BB0 /* NewPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F449693E2A4D143A00D01BB0 /* NewPostModel.swift */; };
 		F458EE582A2BB0B70073B151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EE572A2BB0B70073B151 /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		F40B98992A52D8CF002F8CFA /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		F40B989D2A532A93002F8CFA /* ScaledPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledPhoto.swift; sourceTree = "<group>"; };
 		F440263A2A4906D700F7E426 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F449693E2A4D143A00D01BB0 /* NewPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostModel.swift; sourceTree = "<group>"; };
 		F458EE542A2BB0B70073B151 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,9 +112,10 @@
 		F4A1ACDF2A4F5EE100D4BAD6 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				F4A1ACE02A4F5F1400D4BAD6 /* PhotosViewController.swift */,
 				F4A1ACE22A4F5F6D00D4BAD6 /* PhotoModel.swift */,
 				F4A1ACE42A4F5FA100D4BAD6 /* PhotosCollectionViewCell.swift */,
+				F4A1ACE02A4F5F1400D4BAD6 /* PhotosViewController.swift */,
+				F40B989D2A532A93002F8CFA /* ScaledPhoto.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4A1ACE32A4F5F6D00D4BAD6 /* PhotoModel.swift in Sources */,
+				F40B989E2A532A93002F8CFA /* ScaledPhoto.swift in Sources */,
 				F440263B2A4906D700F7E426 /* LoginViewController.swift in Sources */,
 				F4A1ACE12A4F5F1400D4BAD6 /* PhotosViewController.swift in Sources */,
 				F4624FFF2A4F2AE8002C7757 /* UIView Extension.swift in Sources */,

@@ -8,7 +8,7 @@
 import UIKit
 
 class PhotosViewController: UIViewController, UICollectionViewDelegate {
-
+    
     private let photo = PhotoModel.makeNewPhotoObject()
 
     private lazy var collectionView: UICollectionView = {
@@ -48,20 +48,12 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
     private func layout() {
         view.addSubview(collectionView)
         view.backgroundColor = .systemGray5
-        view.addSubview(groundView)
 
         NSLayoutConstraint.activate([
-
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
-            groundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            groundView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            groundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            groundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-
         ])
     }
 }
@@ -100,46 +92,39 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         inset
     }
 
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let expandedCell = PhotosTableViewCell()
-//        self.view.addSubview(expandedCell)
-//        expandedCell.imageExpandedCell.image = images[indexPath.item]
-//        navigationController?.navigationBar.isHidden = true
-//        NSLayoutConstraint.activate([
-//            expandedCell.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            expandedCell.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            expandedCell.topAnchor.constraint(equalTo: view.topAnchor),
-//            expandedCell.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//        ])
-//        UIView.animate(withDuration: 0.1, animations: {
-//            self.view.layoutIfNeeded()
-//        }) { _ in
-//            UIView.animate(withDuration: 0.3) {
-//                expandedCell.buttonCancel.alpha = 1
-//                expandedCell.backgroundColor = .black.withAlphaComponent(0.8)
-//            }
-//        }
-//    }
-//}
-
-
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if let cell = collectionView.cellForItem(at: indexPath) as? PhotosCollectionViewCell {
-            collectionView.bringSubviewToFront(cell)
-            UIView.animate(withDuration: 0.5) {
 
-                let screenWidth = UIScreen.main.bounds.width
-//                let screenHeight = UIScreen.main.bounds.height
+            let scaledPhoto = ScaledPhoto()
+            scaledPhoto.delegate = self
+            self.view.addSubview(scaledPhoto)
+            scaledPhoto.scaledImage.image = cell.image.image
+            navigationController?.navigationBar.isHidden = true
+            NSLayoutConstraint.activate([
+                scaledPhoto.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                scaledPhoto.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                scaledPhoto.topAnchor.constraint(equalTo: view.topAnchor),
+                scaledPhoto.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
 
-                let aspectRatio = cell.image.bounds.width / cell.image.bounds.height
-                let newHeight = screenWidth / aspectRatio
+            scaledPhoto.backgroundColor = .black.withAlphaComponent(0)
+                scaledPhoto.scaledImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                scaledPhoto.cancelButton.alpha = 0
 
-                cell.image.transform = CGAffineTransform(scaleX: screenWidth / cell.image.bounds.width, y: newHeight / cell.image.bounds.height)
-
-                self.groundView.backgroundColor = .black.withAlphaComponent(0.5)
-                self.groundView.alpha = 0.5
-            }
+            UIView.animate(withDuration: 0.2, animations: {
+                    scaledPhoto.backgroundColor = .black.withAlphaComponent(0.8)
+                    scaledPhoto.scaledImage.transform = .identity
+                    scaledPhoto.cancelButton.alpha = 1
+                    self.view.layoutIfNeeded()
+                })
         }
+    }
+}
+
+extension PhotosViewController: ScaledPhotoDelegate {
+    func pressedButton(view: ScaledPhoto) {
+    view.removeFromSuperview()
+    navigationController?.navigationBar.isHidden = false
     }
 }

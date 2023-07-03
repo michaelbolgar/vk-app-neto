@@ -226,7 +226,7 @@ class LoginViewController: UIViewController {
         if !isLoginFieldValid() {
             wrongTextField(loginTextField)
         }
-        if loginTextField.text == "1" && passwortTextField.text == "1" {
+        if loginTextField.text == "simona" && passwortTextField.text == "123456" {
             self.navigationController?.pushViewController(profileViewController, animated: true)
             view.endEditing(true)
         } else {

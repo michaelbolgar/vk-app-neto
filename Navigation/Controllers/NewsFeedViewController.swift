@@ -15,7 +15,7 @@ class NewsFeedViewController: UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fillEqually
         stackView.alignment = .center
         stackView.spacing = 10
         stackView.addArrangedSubview(newsButton1)
@@ -52,7 +52,10 @@ class NewsFeedViewController: UIViewController {
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.widthAnchor.constraint(equalToConstant: 250),
-            stackView.heightAnchor.constraint(equalToConstant: 150)
+            stackView.heightAnchor.constraint(equalToConstant: 150),
+
+            newsButton1.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            newsButton2.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
 
     }
