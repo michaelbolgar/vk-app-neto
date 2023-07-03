@@ -9,7 +9,7 @@ import UIKit
 
 class PhotosViewController: UIViewController, UICollectionViewDelegate {
 
-    private let photo = Photo.makeNewPhotoObject()
+    private let photo = PhotoModel.makeNewPhotoObject()
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

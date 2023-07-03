@@ -9,10 +9,10 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
 
-    private var newPost = NewPost.makeNewPost()
-    private let photo = Photo.makeNewPhotoObject()
+    private var newPost = NewPostModel.makeNewPost()
+    private let photo = PhotoModel.makeNewPhotoObject()
     let headerView = ProfileHeaderView()
-    private var dataSource: [NewPost] = []
+    private var dataSource: [NewPostModel] = []
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -37,12 +37,6 @@ final class ProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
 
-//    private func setupLikeButton() {
-//        let postCell = NewPostCell()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(likeButtonAction))
-//        postCell.likesCount.addGestureRecognizer(tapGesture)
-//    }
-
     private func layout() {
         view.backgroundColor = .systemGray5
         view.addSubview(tableView)
@@ -55,10 +49,6 @@ final class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-//
-//    @objc func likeButtonAction() {
-//        print ("ffff")
-//    }
 }
 
 extension ProfileViewController: UITableViewDataSource {

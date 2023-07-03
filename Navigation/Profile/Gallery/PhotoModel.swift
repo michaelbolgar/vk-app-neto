@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Photo {
+struct PhotoModel {
 
     var image: UIImage
 
@@ -15,11 +15,11 @@ struct Photo {
         self.image = image
     }
 
-    static func makeNewPhotoObject() -> [Photo] {
-        var photo = [Photo]()
+    static func makeNewPhotoObject() -> [PhotoModel] {
+        var photo = [PhotoModel]()
 
         for i in 1...21 {
-            photo.append(Photo(image: (UIImage(named: "galleryPhoto\(i)") ?? UIImage(named: "noPhoto")) ?? UIImage()))
+            photo.append(PhotoModel(image: (UIImage(named: "galleryPhoto\(i)") ?? UIImage(named: "noPhoto")) ?? UIImage()))
         }
         return photo
     }

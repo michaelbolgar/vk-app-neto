@@ -9,7 +9,7 @@ import UIKit
 
 final class PostDetailViewController: UIViewController {
 
-    var post: NewPost?
+    var post: NewPostModel?
 
     private lazy var authorName: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +58,7 @@ final class PostDetailViewController: UIViewController {
         layout()
     }
 
-    func setupVC(model: NewPost) {
+    func setupVC(model: NewPostModel) {
         post = model
         post?.viewsCount += 1
         authorName.text = model.author

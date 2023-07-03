@@ -31,7 +31,7 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
         image.image = nil
     }
 
-    func customizeCell(photo: Photo) {
+    func customizeCell(photo: PhotoModel) {
         image.image = photo.image
         contentView.addSubview(image)
 

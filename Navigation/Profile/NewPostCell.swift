@@ -9,13 +9,12 @@ import UIKit
 
 protocol NewPostCellDelegate: AnyObject {
     func likeButtonAction(in cell: NewPostCell)
-//    func tapPost(cell: NewPostCell)
 }
 
 final class NewPostCell: UITableViewCell {
 
     weak var delegate: NewPostCellDelegate?
-    var post: NewPost?
+    var post: NewPostModel?
     
     private lazy var authorName: UILabel = {
         let label = UILabel()
@@ -79,7 +78,7 @@ final class NewPostCell: UITableViewCell {
         viewsCount.text = nil
     }
 
-    func setupCell(post: NewPost) {
+    func setupCell(post: NewPostModel) {
         authorName.text = post.author
         postImage.image = post.image
         postText.text = post.description
@@ -90,10 +89,6 @@ final class NewPostCell: UITableViewCell {
         let likeTapGesture = UITapGestureRecognizer(target: self, action: #selector(likeLabelTapped))
         likesCount.isUserInteractionEnabled = true
         likesCount.addGestureRecognizer(likeTapGesture)
-//
-//        let postTapGesture = UITapGestureRecognizer(target: self, action: #selector(postTapped))
-//        viewsCount.isUserInteractionEnabled = true
-//        viewsCount.addGestureRecognizer(postTapGesture)
     }
 
     private func layout() {
@@ -131,9 +126,5 @@ final class NewPostCell: UITableViewCell {
     @objc private func likeLabelTapped() {
         delegate?.likeButtonAction(in: self)
     }
-
-//    @objc private func postTapped() {
-//        delegate?.tapPost(cell: self)
-//    }
 }
 

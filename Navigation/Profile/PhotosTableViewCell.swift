@@ -65,7 +65,7 @@ class PhotosTableViewCell: UITableViewCell {
         }
     }
 
-    func customizeCell(photo: Photo) {
+    func customizeCell(photo: PhotoModel) {
 
         arrowImage.image = UIImage(systemName: "arrow.right")
         contentView.addSubview(photoGalleryLabel)
