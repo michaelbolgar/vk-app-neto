@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F40B989A2A52D8CF002F8CFA /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40B98992A52D8CF002F8CFA /* PostDetailViewController.swift */; };
 		F440263B2A4906D700F7E426 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440263A2A4906D700F7E426 /* LoginViewController.swift */; };
 		F449693F2A4D143A00D01BB0 /* NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F449693E2A4D143A00D01BB0 /* NewPost.swift */; };
 		F458EE582A2BB0B70073B151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458EE572A2BB0B70073B151 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F40B98992A52D8CF002F8CFA /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		F440263A2A4906D700F7E426 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F449693E2A4D143A00D01BB0 /* NewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPost.swift; sourceTree = "<group>"; };
 		F458EE542A2BB0B70073B151 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 				F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */,
 				F449693E2A4D143A00D01BB0 /* NewPost.swift */,
 				F46250002A4F2B39002C7757 /* NewPostCell.swift */,
+				F40B98992A52D8CF002F8CFA /* PostDetailViewController.swift */,
 				F4624FFE2A4F2AE8002C7757 /* UIView Extension.swift */,
 				F4A1ACE62A4F604200D4BAD6 /* PhotosTableViewCell.swift */,
 				F4A1ACDF2A4F5EE100D4BAD6 /* Gallery */,
@@ -213,6 +216,7 @@
 				F458EEB22A2CDE2C0073B151 /* Post.swift in Sources */,
 				F458EEB42A2CEC3B0073B151 /* InfoViewController.swift in Sources */,
 				F4A1ACE52A4F5FA100D4BAD6 /* PhotosCollectionViewCell.swift in Sources */,
+				F40B989A2A52D8CF002F8CFA /* PostDetailViewController.swift in Sources */,
 				F458EE6E2A2BB4A90073B151 /* NewsFeedViewController.swift in Sources */,
 				F449693F2A4D143A00D01BB0 /* NewPost.swift in Sources */,
 				F4EBB5552A363A6D00545092 /* ProfileHeaderView.swift in Sources */,

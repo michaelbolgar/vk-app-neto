@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
 
     private let photoSize: CGFloat = 110
 
-    lazy var userPhotoImageView: UIImageView = {
+    private lazy var userPhotoImageView: UIImageView = {
         let userPhotoImageView = UIImageView()
         let catImage = UIImage(named: "userPhoto")
 

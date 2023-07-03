@@ -7,9 +7,17 @@
 
 import UIKit
 
+protocol NewPostCellDelegate: AnyObject {
+    func likeButtonAction(in cell: NewPostCell)
+//    func tapPost(cell: NewPostCell)
+}
+
 final class NewPostCell: UITableViewCell {
 
-    private let authorName: UILabel = {
+    weak var delegate: NewPostCellDelegate?
+    var post: NewPost?
+    
+    private lazy var authorName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
@@ -18,7 +26,7 @@ final class NewPostCell: UITableViewCell {
         return label
     }()
 
-    private let postImage: UIImageView = {
+    private lazy var postImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -26,7 +34,7 @@ final class NewPostCell: UITableViewCell {
         return imageView
     }()
 
-    private let postText: UILabel = {
+    private lazy var postText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemGray
@@ -35,7 +43,7 @@ final class NewPostCell: UITableViewCell {
         return label
     }()
 
-    private let likesCount: UILabel = {
+    lazy var likesCount: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
@@ -44,7 +52,7 @@ final class NewPostCell: UITableViewCell {
         return label
     }()
 
-    private let viewsCount: UILabel = {
+    lazy var viewsCount: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
@@ -77,6 +85,15 @@ final class NewPostCell: UITableViewCell {
         postText.text = post.description
         likesCount.text = ("Likes: \(post.likesCount)")
         viewsCount.text = ("Views: \(post.viewsCount)")
+        self.post = post
+
+        let likeTapGesture = UITapGestureRecognizer(target: self, action: #selector(likeLabelTapped))
+        likesCount.isUserInteractionEnabled = true
+        likesCount.addGestureRecognizer(likeTapGesture)
+//
+//        let postTapGesture = UITapGestureRecognizer(target: self, action: #selector(postTapped))
+//        viewsCount.isUserInteractionEnabled = true
+//        viewsCount.addGestureRecognizer(postTapGesture)
     }
 
     private func layout() {
@@ -110,5 +127,13 @@ final class NewPostCell: UITableViewCell {
             viewsCount.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -viewInset),
         ])
     }
+
+    @objc private func likeLabelTapped() {
+        delegate?.likeButtonAction(in: self)
+    }
+
+//    @objc private func postTapped() {
+//        delegate?.tapPost(cell: self)
+//    }
 }
 

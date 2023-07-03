@@ -9,9 +9,10 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
 
-    private let newPost = NewPost.makeNewPost()
+    private var newPost = NewPost.makeNewPost()
     private let photo = Photo.makeNewPhotoObject()
     let headerView = ProfileHeaderView()
+    private var dataSource: [NewPost] = []
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -36,6 +37,12 @@ final class ProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
 
+//    private func setupLikeButton() {
+//        let postCell = NewPostCell()
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(likeButtonAction))
+//        postCell.likesCount.addGestureRecognizer(tapGesture)
+//    }
+
     private func layout() {
         view.backgroundColor = .systemGray5
         view.addSubview(tableView)
@@ -48,6 +55,10 @@ final class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
+//
+//    @objc func likeButtonAction() {
+//        print ("ffff")
+//    }
 }
 
 extension ProfileViewController: UITableViewDataSource {
@@ -73,9 +84,11 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: NewPostCell.identifier, for: indexPath) as? NewPostCell
             cell?.setupCell(post: newPost[indexPath.row])
+            cell?.delegate = self
             return cell ?? UITableViewCell()
         }
     }
+
 }
 
 extension ProfileViewController: UITableViewDelegate {
@@ -102,5 +115,25 @@ extension ProfileViewController: UITableViewDelegate {
                 let gallery = PhotosViewController()
                 self.navigationController?.pushViewController(gallery, animated: true)
         }
+
+        if indexPath.section != 0 {
+            var post = newPost[indexPath.row]
+            let postDetailVC = PostDetailViewController()
+            postDetailVC.setupVC(model: post)
+            post.viewsCount += 1
+            newPost[indexPath.row] = post
+            tableView.reloadRows(at: [indexPath], with: .none) 
+            navigationController?.pushViewController(postDetailVC, animated: true)
+        }
     }
 }
+
+extension ProfileViewController: NewPostCellDelegate {
+
+    func likeButtonAction(in cell: NewPostCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        newPost[indexPath.row].likesCount += 1
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+}
+

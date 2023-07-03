@@ -11,8 +11,8 @@ struct NewPost {
     let author: String
     let image: UIImage
     let description: String?
-    let likesCount: Int
-    let viewsCount: Int
+    var likesCount: Int
+    var viewsCount: Int
 
     static func makeNewPost() -> [NewPost] {
         var post = [NewPost]()
