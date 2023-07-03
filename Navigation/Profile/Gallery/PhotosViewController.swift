@@ -94,6 +94,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
+
         if let cell = collectionView.cellForItem(at: indexPath) as? PhotosCollectionViewCell {
 
             let scaledPhoto = ScaledPhoto()
@@ -101,6 +102,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
             self.view.addSubview(scaledPhoto)
             scaledPhoto.scaledImage.image = cell.image.image
             navigationController?.navigationBar.isHidden = true
+
             NSLayoutConstraint.activate([
                 scaledPhoto.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 scaledPhoto.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -109,15 +111,15 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
             ])
 
             scaledPhoto.backgroundColor = .black.withAlphaComponent(0)
-                scaledPhoto.scaledImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                scaledPhoto.cancelButton.alpha = 0
+            scaledPhoto.scaledImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            scaledPhoto.cancelButton.alpha = 0
 
             UIView.animate(withDuration: 0.2, animations: {
-                    scaledPhoto.backgroundColor = .black.withAlphaComponent(0.8)
-                    scaledPhoto.scaledImage.transform = .identity
-                    scaledPhoto.cancelButton.alpha = 1
-                    self.view.layoutIfNeeded()
-                })
+                scaledPhoto.backgroundColor = .black.withAlphaComponent(0.8)
+                scaledPhoto.scaledImage.transform = .identity
+                scaledPhoto.cancelButton.alpha = 1
+                self.view.layoutIfNeeded()
+            })
         }
     }
 }

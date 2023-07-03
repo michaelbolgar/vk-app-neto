@@ -67,14 +67,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F44969412A4DC9B600D01BB0 /* Controllers */ = {
+		F44969412A4DC9B600D01BB0 /* Main Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				F458EE6D2A2BB4A90073B151 /* NewsFeedViewController.swift */,
 				F458EEAF2A2CC0280073B151 /* PostViewController.swift */,
 				F458EEB32A2CEC3B0073B151 /* InfoViewController.swift */,
+				F440263A2A4906D700F7E426 /* LoginViewController.swift */,
+				F458EE6B2A2BB4590073B151 /* ProfileViewController.swift */,
 			);
-			path = Controllers;
+			path = "Main Controllers";
 			sourceTree = "<group>";
 		};
 		F458EE4B2A2BB0B60073B151 = {
@@ -98,7 +100,7 @@
 			children = (
 				F458EE572A2BB0B70073B151 /* AppDelegate.swift */,
 				F458EE592A2BB0B70073B151 /* SceneDelegate.swift */,
-				F44969412A4DC9B600D01BB0 /* Controllers */,
+				F44969412A4DC9B600D01BB0 /* Main Controllers */,
 				F4EBB5532A363A4100545092 /* Profile */,
 				F458EEB12A2CDE2C0073B151 /* Post.swift */,
 				F4A1ACEA2A50637500D4BAD6 /* UIColor Extension.swift */,
@@ -123,14 +125,12 @@
 		F4EBB5532A363A4100545092 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				F440263A2A4906D700F7E426 /* LoginViewController.swift */,
-				F458EE6B2A2BB4590073B151 /* ProfileViewController.swift */,
 				F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */,
 				F449693E2A4D143A00D01BB0 /* NewPostModel.swift */,
 				F46250002A4F2B39002C7757 /* NewPostCell.swift */,
 				F40B98992A52D8CF002F8CFA /* PostDetailViewController.swift */,
-				F4624FFE2A4F2AE8002C7757 /* UIView Extension.swift */,
 				F4A1ACE62A4F604200D4BAD6 /* PhotosTableViewCell.swift */,
+				F4624FFE2A4F2AE8002C7757 /* UIView Extension.swift */,
 				F4A1ACDF2A4F5EE100D4BAD6 /* Gallery */,
 			);
 			path = Profile;

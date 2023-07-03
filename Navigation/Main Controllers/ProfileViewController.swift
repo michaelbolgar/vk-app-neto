@@ -10,7 +10,7 @@ import UIKit
 final class ProfileViewController: UIViewController {
 
     private var newPost = NewPostModel.makeNewPost()
-    private let photo = PhotoModel.makeNewPhotoObject()
+    private var photo = PhotoModel.makeNewPhotoObject()
     let headerView = ProfileHeaderView()
     private var dataSource: [NewPostModel] = []
 
@@ -22,7 +22,7 @@ final class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.register(NewPostCell.self, forCellReuseIdentifier: NewPostCell.identifier)
         tableView.sectionHeaderHeight = 0
-        tableView.contentInset = UIEdgeInsets(top: -22, left: 0, bottom: 0, right: 0) // это понадобилось для того, чтобы убрать отступ таблицы от верхнего края
+        tableView.contentInset = UIEdgeInsets(top: -22, left: 0, bottom: 0, right: 0)
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         return tableView
         }()
@@ -78,7 +78,6 @@ extension ProfileViewController: UITableViewDataSource {
             return cell ?? UITableViewCell()
         }
     }
-
 }
 
 extension ProfileViewController: UITableViewDelegate {
@@ -114,6 +113,14 @@ extension ProfileViewController: UITableViewDelegate {
             newPost[indexPath.row] = post
             tableView.reloadRows(at: [indexPath], with: .none) 
             navigationController?.pushViewController(postDetailVC, animated: true)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print ("delete")
+            newPost.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
