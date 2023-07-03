@@ -118,7 +118,7 @@ extension ProfileViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print ("delete")
+            print ("cell deleted")
             newPost.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
