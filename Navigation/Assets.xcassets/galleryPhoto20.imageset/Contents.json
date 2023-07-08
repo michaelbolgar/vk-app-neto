@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "IMG_1849.jpg",
+      "filename" : "galleryPhoto20.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "IMG_1849 1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "IMG_1849 2.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

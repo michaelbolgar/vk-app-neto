@@ -18,7 +18,7 @@ struct PhotoModel {
     static func makeNewPhotoObject() -> [PhotoModel] {
         var photo = [PhotoModel]()
 
-        for i in 1...20 {
+        for i in 1...21 {
             photo.append(PhotoModel(image: (UIImage(named: "galleryPhoto\(i)") ?? UIImage(named: "noPhoto")) ?? UIImage()))
         }
         return photo

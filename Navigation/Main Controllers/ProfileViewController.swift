@@ -15,14 +15,13 @@ final class ProfileViewController: UIViewController {
     private var dataSource: [NewPostModel] = []
 
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(NewPostCell.self, forCellReuseIdentifier: NewPostCell.identifier)
         tableView.sectionHeaderHeight = 0
-        tableView.contentInset = UIEdgeInsets(top: -22, left: 0, bottom: 0, right: 0)
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         return tableView
         }()
