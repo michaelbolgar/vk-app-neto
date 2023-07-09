@@ -110,10 +110,6 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
                 scaledPhoto.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
 
-            scaledPhoto.backgroundColor = .black.withAlphaComponent(0)
-            scaledPhoto.scaledImage.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            scaledPhoto.cancelButton.alpha = 0
-
             UIView.animate(withDuration: 0.2, animations: {
                 scaledPhoto.backgroundColor = .black.withAlphaComponent(0.8)
                 scaledPhoto.scaledImage.transform = .identity

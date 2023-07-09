@@ -1,22 +1,28 @@
 //
-//  PhotoDetailViewController.swift
+//  ScaledAvatar.swift
 //  Navigation
 //
-//  Created by Михаил Болгар on 03.07.2023.
+//  Created by Михаил Болгар on 09.07.2023.
 //
+
 import UIKit
 
-protocol ScaledPhotoDelegate: AnyObject {
-    func pressedButton(view: ScaledPhoto)
+protocol ScaledAvatarDelegate: AnyObject {
+    func pressedButton(view: ScaledAvatar)
 }
 
-class ScaledPhoto: UIView {
+class ScaledAvatar: UIView {
 
-    weak var delegate: ScaledPhotoDelegate?
+    weak var delegate: ScaledAvatarDelegate?
+    private let photoSize: CGFloat = 300
 
-    lazy var scaledImage: UIImageView = {
+    lazy var scaledAvatar: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = photoSize / 2
+        $0.layer.borderColor = UIColor.white.cgColor
+        $0.layer.borderWidth = 3
         return $0
     }(UIImageView())
 
@@ -48,20 +54,17 @@ class ScaledPhoto: UIView {
     }
 
     private func layout() {
-        self.addSubview(scaledImage)
+        self.addSubview(scaledAvatar)
         self.addSubview(cancelButton)
 
-        let screenWidth = UIScreen.main.bounds.width
-
         NSLayoutConstraint.activate([
-            scaledImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            scaledImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            scaledImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            scaledImage.widthAnchor.constraint(equalToConstant: screenWidth),
-            scaledImage.heightAnchor.constraint(equalToConstant: screenWidth),
+            scaledAvatar.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            scaledAvatar.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            scaledAvatar.widthAnchor.constraint(equalToConstant: photoSize),
+            scaledAvatar.heightAnchor.constraint(equalToConstant: photoSize),
 
-            cancelButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            cancelButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            cancelButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 30),
+            cancelButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
     }
 
@@ -69,3 +72,4 @@ class ScaledPhoto: UIView {
         delegate?.pressedButton(view: self)
     }
 }
+
