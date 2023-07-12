@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate, ScaledAvatarDelegate {
+final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate, ScaledPhotoDelegate {
 
     private var newPost = NewPostModel.makeNewPost()
     private var photo = PhotoModel.makeNewPhotoObject()
@@ -26,15 +26,6 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
         return tableView
     }()
 
-    //вью для затемнения при увеличении аватара
-    private lazy var groundView: UIView = {
-        let groundView = UIView()
-        groundView.translatesAutoresizingMaskIntoConstraints = false
-        groundView.backgroundColor = .black
-        groundView.alpha = 0
-        return groundView
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
@@ -48,7 +39,6 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
     private func layout() {
         view.backgroundColor = .systemGray5
         view.addSubview(tableView)
-        view.addSubview(groundView)
 
         NSLayoutConstraint.activate([
 
@@ -57,10 +47,10 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
-            groundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            groundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            groundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            groundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+//            groundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            groundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            groundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            groundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 
@@ -68,32 +58,31 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
     @objc private func headerViewGestureHandler(_ gestureRecognizer: UITapGestureRecognizer) {
         if gestureRecognizer.view is UIImageView {
 
-            groundView.alpha = 0.5
-            let scaledAvatar = ScaledAvatar()
+            let scaledAvatar = ScaledPhoto()
             scaledAvatar.delegate = self
             self.view.addSubview(scaledAvatar)
-            scaledAvatar.scaledAvatar.image = headerView.userPhotoImageView.image
+            scaledAvatar.scaledImage.image = headerView.userPhotoImageView.image
 
             NSLayoutConstraint.activate([
-                scaledAvatar.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                scaledAvatar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
-                scaledAvatar.cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-                scaledAvatar.cancelButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
+                scaledAvatar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                scaledAvatar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
 
-            UIView.animate(withDuration: 0.2, animations: {
-                scaledAvatar.backgroundColor = .black.withAlphaComponent(0.8)
-                scaledAvatar.scaledAvatar.transform = .identity
-                scaledAvatar.cancelButton.alpha = 1
-                self.view.layoutIfNeeded()
-            })
+            UIView.animateKeyframes(withDuration: 0.5, delay: 0) {
+                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.4) {
+                    scaledAvatar.backgroundColor = .black.withAlphaComponent(0.8)
+                    scaledAvatar.scaledImage.transform = .identity
+                    self.view.layoutIfNeeded()
+                }
+                UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.5) {
+                    scaledAvatar.cancelButton.alpha = 1
+                }
+            }
         }
     }
 
-    func pressedButton(view: ScaledAvatar) {
+    func pressedButton(view: ScaledPhoto) {
         view.removeFromSuperview()
-        groundView.alpha = 0
     }
 }
 

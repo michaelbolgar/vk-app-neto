@@ -36,12 +36,10 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(image)
 
         NSLayoutConstraint.activate([
-
             image.topAnchor.constraint(equalTo: contentView.topAnchor),
             image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             image.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-
         ])
     }
 }

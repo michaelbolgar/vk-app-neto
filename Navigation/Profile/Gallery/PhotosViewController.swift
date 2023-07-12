@@ -23,14 +23,6 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         return photosCollectionView
     }()
 
-    private lazy var groundView: UIView = {
-        let groundView = UIView()
-        groundView.translatesAutoresizingMaskIntoConstraints = false
-        groundView.backgroundColor = .black
-        groundView.alpha = 0
-        return groundView
-    }()
-
     private var leadingImageView = NSLayoutConstraint()
     private var topImageView = NSLayoutConstraint()
 
@@ -104,8 +96,6 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
             navigationController?.navigationBar.isHidden = true
 
             NSLayoutConstraint.activate([
-                scaledPhoto.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                scaledPhoto.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 scaledPhoto.topAnchor.constraint(equalTo: view.topAnchor),
                 scaledPhoto.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
@@ -122,7 +112,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
 extension PhotosViewController: ScaledPhotoDelegate {
     func pressedButton(view: ScaledPhoto) {
-    view.removeFromSuperview()
-    navigationController?.navigationBar.isHidden = false
+        view.removeFromSuperview()
+        navigationController?.navigationBar.isHidden = false
     }
 }

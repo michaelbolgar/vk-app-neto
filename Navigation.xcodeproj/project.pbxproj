@@ -27,7 +27,6 @@
 		F4A1ACE52A4F5FA100D4BAD6 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1ACE42A4F5FA100D4BAD6 /* PhotosCollectionViewCell.swift */; };
 		F4A1ACE72A4F604200D4BAD6 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1ACE62A4F604200D4BAD6 /* PhotosTableViewCell.swift */; };
 		F4A1ACEB2A50637500D4BAD6 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1ACEA2A50637500D4BAD6 /* UIColor Extension.swift */; };
-		F4CC38CA2A5AE63E003A7A78 /* ScaledAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CC38C92A5AE63D003A7A78 /* ScaledAvatar.swift */; };
 		F4EBB5552A363A6D00545092 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +53,6 @@
 		F4A1ACE42A4F5FA100D4BAD6 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4A1ACE62A4F604200D4BAD6 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		F4A1ACEA2A50637500D4BAD6 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
-		F4CC38C92A5AE63D003A7A78 /* ScaledAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledAvatar.swift; sourceTree = "<group>"; };
 		F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,7 +131,6 @@
 				F40B98992A52D8CF002F8CFA /* PostDetailViewController.swift */,
 				F4A1ACE62A4F604200D4BAD6 /* PhotosTableViewCell.swift */,
 				F4624FFE2A4F2AE8002C7757 /* UIView Extension.swift */,
-				F4CC38C92A5AE63D003A7A78 /* ScaledAvatar.swift */,
 				F4A1ACDF2A4F5EE100D4BAD6 /* Gallery */,
 			);
 			path = Profile;
@@ -221,7 +218,6 @@
 				F46250012A4F2B39002C7757 /* NewPostCell.swift in Sources */,
 				F458EE5A2A2BB0B70073B151 /* SceneDelegate.swift in Sources */,
 				F458EEB22A2CDE2C0073B151 /* Post.swift in Sources */,
-				F4CC38CA2A5AE63E003A7A78 /* ScaledAvatar.swift in Sources */,
 				F458EEB42A2CEC3B0073B151 /* InfoViewController.swift in Sources */,
 				F4A1ACE52A4F5FA100D4BAD6 /* PhotosCollectionViewCell.swift in Sources */,
 				F40B989A2A52D8CF002F8CFA /* PostDetailViewController.swift in Sources */,

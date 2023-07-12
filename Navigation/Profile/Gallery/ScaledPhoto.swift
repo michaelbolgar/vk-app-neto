@@ -30,6 +30,15 @@ class ScaledPhoto: UIView {
         return $0
     }(UIImageView())
 
+    //вью для затемнения при увеличении аватара
+    lazy var groundView: UIView = {
+        let groundView = UIView()
+        groundView.translatesAutoresizingMaskIntoConstraints = false
+        groundView.backgroundColor = .black
+        groundView.alpha = 0
+        return groundView
+    }()
+
     override init (frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -50,18 +59,26 @@ class ScaledPhoto: UIView {
     private func layout() {
         self.addSubview(scaledImage)
         self.addSubview(cancelButton)
+        self.addSubview(groundView)
 
         let screenWidth = UIScreen.main.bounds.width
 
         NSLayoutConstraint.activate([
-            scaledImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            scaledImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            scaledImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+
+            groundView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            groundView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            groundView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            groundView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+
+            scaledImage.leadingAnchor.constraint(equalTo: groundView.leadingAnchor),
+            scaledImage.trailingAnchor.constraint(equalTo: groundView.trailingAnchor),
+            scaledImage.centerYAnchor.constraint(equalTo: groundView.centerYAnchor),
             scaledImage.widthAnchor.constraint(equalToConstant: screenWidth),
             scaledImage.heightAnchor.constraint(equalToConstant: screenWidth),
 
-            cancelButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            cancelButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            cancelButton.topAnchor.constraint(equalTo: groundView.topAnchor, constant: 20),
+            cancelButton.trailingAnchor.constraint(equalTo: groundView.trailingAnchor, constant: -20)
+            //добавить констрейнт на обязательное расстояние кнопки от фотографии, чтобы она не наползала на увеличенное фото, видимо с приоритетом констрейнтов
         ])
     }
 
