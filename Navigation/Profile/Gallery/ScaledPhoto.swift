@@ -30,7 +30,6 @@ class ScaledPhoto: UIView {
         return $0
     }(UIImageView())
 
-    //вью для затемнения при увеличении аватара
     lazy var groundView: UIView = {
         let groundView = UIView()
         groundView.translatesAutoresizingMaskIntoConstraints = false

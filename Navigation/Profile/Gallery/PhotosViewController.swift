@@ -100,12 +100,16 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
                 scaledPhoto.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
 
-            UIView.animate(withDuration: 0.2, animations: {
-                scaledPhoto.backgroundColor = .black.withAlphaComponent(0.8)
-                scaledPhoto.scaledImage.transform = .identity
-                scaledPhoto.cancelButton.alpha = 1
-                self.view.layoutIfNeeded()
-            })
+            UIView.animateKeyframes(withDuration: 0.5, delay: 0) {
+                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.4) {
+                    scaledPhoto.backgroundColor = .black.withAlphaComponent(0.8)
+                    scaledPhoto.scaledImage.transform = .identity
+                    self.view.layoutIfNeeded()
+                }
+                UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.5) {
+                    scaledPhoto.cancelButton.alpha = 1
+                }
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
     private var photo = PhotoModel.makeNewPhotoObject()
     let headerView = ProfileHeaderView()
     private var dataSource: [NewPostModel] = []
+    private var isAvatarZoomed = false
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -26,9 +27,28 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
         return tableView
     }()
 
+    //    private lazy var groundView: UIView = {
+    //        let groundView = UIView()
+    //        groundView.translatesAutoresizingMaskIntoConstraints = false
+    //        groundView.backgroundColor = .black
+    //        groundView.alpha = 0
+    //        return groundView
+    //    }()
+
+    //    private lazy var cancelButton: UIImageView = {
+    //        let button = UIImageView()
+    //        button.image = UIImage(systemName: "multiply.square")
+    //        button.tintColor = .white
+    //        button.isHidden = true
+    //        button.isUserInteractionEnabled = true
+    //        button.translatesAutoresizingMaskIntoConstraints = false
+    //        return button
+    //    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
+        //        setupGesture()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,9 +56,16 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
         navigationController?.navigationBar.isHidden = true
     }
 
+    //    private func setupGesture() {
+    //        let tapGesture = UITapGestureRecognizer (target: self, action: #selector(cancelButtonAction))
+    //        cancelButton.addGestureRecognizer(tapGesture)
+    //    }
+
     private func layout() {
         view.backgroundColor = .systemGray5
         view.addSubview(tableView)
+        //        view.addSubview(groundView)
+        //        view.addSubview(cancelButton)
 
         NSLayoutConstraint.activate([
 
@@ -47,12 +74,23 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
-//            groundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            groundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            groundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            groundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            //            groundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            //            groundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            //            groundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            //            groundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            //
+            //            cancelButton.topAnchor.constraint(equalTo: groundView.topAnchor, constant: 30),
+            //            cancelButton.trailingAnchor.constraint(equalTo: groundView.trailingAnchor, constant: -30)
         ])
     }
+
+    func pressedButton(view: ScaledPhoto) {
+        view.removeFromSuperview()
+    }
+
+    //    @objc private func cancelButtonAction() {
+    //        print ("cancel button tapped")
+    //    }
 
     //действие для тапа по аватару
     @objc private func headerViewGestureHandler(_ gestureRecognizer: UITapGestureRecognizer) {
@@ -79,10 +117,26 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
                 }
             }
         }
-    }
 
-    func pressedButton(view: ScaledPhoto) {
-        view.removeFromSuperview()
+//            let screenWidth = UIScreen.main.bounds.width
+//            let screenHeight = UIScreen.main.bounds.height
+//            let zoomedAvatar = screenWidth / tappedView.bounds.width
+//
+//            if isAvatarZoomed {
+//                tappedView.transform = .identity
+//                self.groundView.alpha = 0
+//                self.cancelButton.isHidden = true
+//                isAvatarZoomed = false
+//            } else {
+//                UIView.animate(withDuration: 0.5, animations: {
+//                    tappedView.transform = CGAffineTransform (scaleX: zoomedAvatar, y: zoomedAvatar)
+//                    tappedView.center = CGPoint (x: screenWidth / 2, y: screenHeight / 2)
+//                    tappedView.backgroundColor = .black.withAlphaComponent(0.8)
+//                    self.groundView.alpha = 0.5
+//                    self.cancelButton.isHidden = false
+//                    self.isAvatarZoomed = true
+//                })
+//            }
     }
 }
 
