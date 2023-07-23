@@ -7,18 +7,25 @@
 
 import UIKit
 
+protocol NewPostCellDelegate: AnyObject {
+    func likeButtonAction(in cell: NewPostCell)
+}
+
 final class NewPostCell: UITableViewCell {
 
-    private let authorName: UILabel = {
+    weak var delegate: NewPostCellDelegate?
+    var post: NewPostModel?
+    
+    private lazy var authorName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = UIColor.label
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.numberOfLines = 2
         return label
     }()
 
-    private let postImage: UIImageView = {
+    private lazy var postImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -26,28 +33,28 @@ final class NewPostCell: UITableViewCell {
         return imageView
     }()
 
-    private let postText: UILabel = {
+    private lazy var postText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemGray
+        label.textColor = UIColor.secondaryLabel
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         return label
     }()
 
-    private let likesCount: UILabel = {
+    lazy var likesCount: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = UIColor.tertiaryLabel
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 1
         return label
     }()
 
-    private let viewsCount: UILabel = {
+    lazy var viewsCount: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = UIColor.tertiaryLabel
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 1
         return label
@@ -71,12 +78,17 @@ final class NewPostCell: UITableViewCell {
         viewsCount.text = nil
     }
 
-    func setupCell(post: NewPost) {
+    func setupCell(post: NewPostModel) {
         authorName.text = post.author
         postImage.image = post.image
         postText.text = post.description
         likesCount.text = ("Likes: \(post.likesCount)")
         viewsCount.text = ("Views: \(post.viewsCount)")
+        self.post = post
+
+        let likeTapGesture = UITapGestureRecognizer(target: self, action: #selector(likeLabelTapped))
+        likesCount.isUserInteractionEnabled = true
+        likesCount.addGestureRecognizer(likeTapGesture)
     }
 
     private func layout() {
@@ -109,6 +121,10 @@ final class NewPostCell: UITableViewCell {
             viewsCount.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -viewInset),
             viewsCount.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -viewInset),
         ])
+    }
+
+    @objc private func likeLabelTapped() {
+        delegate?.likeButtonAction(in: self)
     }
 }
 
