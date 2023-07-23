@@ -19,7 +19,7 @@ final class NewPostCell: UITableViewCell {
     private lazy var authorName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = UIColor.label
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.numberOfLines = 2
         return label
@@ -36,7 +36,7 @@ final class NewPostCell: UITableViewCell {
     private lazy var postText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemGray
+        label.textColor = UIColor.secondaryLabel
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         return label
@@ -45,7 +45,7 @@ final class NewPostCell: UITableViewCell {
     lazy var likesCount: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = UIColor.tertiaryLabel
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 1
         return label
@@ -54,7 +54,7 @@ final class NewPostCell: UITableViewCell {
     lazy var viewsCount: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = UIColor.tertiaryLabel
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 1
         return label

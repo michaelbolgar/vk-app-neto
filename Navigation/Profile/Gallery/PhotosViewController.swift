@@ -16,7 +16,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         layout.scrollDirection = .vertical
         let photosCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         photosCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        photosCollectionView.backgroundColor = .white
+        photosCollectionView.backgroundColor = Palette.backgroundColor
         photosCollectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier)
         photosCollectionView.dataSource = self
         photosCollectionView.delegate = self

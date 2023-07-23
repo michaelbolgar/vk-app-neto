@@ -12,7 +12,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let arrowImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = .black
+        imageView.tintColor = UIColor.secondaryLabel
         return imageView
     }()
 
@@ -20,7 +20,7 @@ class PhotosTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Photos"
-        label.textColor = .black
+        label.textColor = UIColor.label
         label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
     }()

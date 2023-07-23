@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = Palette.backgroundColor
         return contentView
     }()
 
@@ -38,12 +38,12 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.size.height))
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = .systemGray6
+        textField.backgroundColor = Palette.textfieldBackgroundColor
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.layer.cornerRadius = 10
         textField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        textField.textColor = .black
+        textField.textColor = Palette.textfieldTextColor
         textField.placeholder = "Email or phone"
         textField.leftView = paddingView
         textField.leftViewMode = .always
@@ -56,12 +56,12 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.size.height))
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = .systemGray6
+        textField.backgroundColor = Palette.textfieldBackgroundColor
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.layer.cornerRadius = 10
         textField.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        textField.textColor = .black
+        textField.textColor = Palette.textfieldTextColor
         textField.placeholder = "Passwort"
         textField.leftView = paddingView
         textField.leftViewMode = .always
@@ -96,7 +96,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = Palette.backgroundColor
         loginViewControllerLayout()
     }
 

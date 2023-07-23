@@ -14,33 +14,36 @@ final class PostDetailViewController: UIViewController {
     private lazy var authorName: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 25)
+        $0.textColor = UIColor.label
         return $0
     }(UILabel())
 
     private lazy var postText: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 14)
+        $0.textColor = UIColor.secondaryLabel
         return $0
     }(UILabel())
 
     private lazy var postImage: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 10
-        $0.backgroundColor = .systemGray
         return $0
     }(UIImageView())
 
     private lazy var likesLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 16)
+        $0.textColor = UIColor.tertiaryLabel
         return $0
     }(UILabel())
 
     private lazy var viewsLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 16)
+        $0.textColor = UIColor.tertiaryLabel
         return $0
     }(UILabel())
 

@@ -18,7 +18,7 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = Palette.backgroundColor
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(NewPostCell.self, forCellReuseIdentifier: NewPostCell.identifier)

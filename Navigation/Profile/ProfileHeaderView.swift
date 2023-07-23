@@ -28,7 +28,7 @@ class ProfileHeaderView: UIView {
     private lazy var userName: UILabel = {
         let userName = UILabel()
         userName.text = "Lady Simona"
-        userName.textColor = .black
+        userName.textColor = UIColor.label
         userName.font = UIFont.boldSystemFont(ofSize: 18)
         userName.translatesAutoresizingMaskIntoConstraints = false
         return userName
@@ -37,7 +37,7 @@ class ProfileHeaderView: UIView {
     private lazy var statusText: UILabel = {
         let statusText = UILabel()
         statusText.text = "Waiting for something..."
-        statusText.textColor = .gray
+        statusText.textColor = UIColor.secondaryLabel
         statusText.font = UIFont.systemFont(ofSize: 14)
         statusText.translatesAutoresizingMaskIntoConstraints = false
         return statusText
@@ -69,7 +69,7 @@ class ProfileHeaderView: UIView {
         textField.layer.cornerRadius = 12
         textField.textColor = .black
         textField.clearButtonMode = .whileEditing
-        textField.placeholder = "Set your status..."
+        textField.attributedPlaceholder = NSAttributedString (string: "Set your status...", attributes: [NSAttributedString.Key.foregroundColor: Palette.placeholderColor])
         textField.leftView = paddingView
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false

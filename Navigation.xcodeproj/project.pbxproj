@@ -28,6 +28,7 @@
 		F4A1ACE72A4F604200D4BAD6 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1ACE62A4F604200D4BAD6 /* PhotosTableViewCell.swift */; };
 		F4A1ACEB2A50637500D4BAD6 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1ACEA2A50637500D4BAD6 /* UIColor Extension.swift */; };
 		F4EBB5552A363A6D00545092 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */; };
+		F4EEB9442A6C28AF005C735F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EEB9432A6C28AF005C735F /* Palette.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		F4A1ACE62A4F604200D4BAD6 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		F4A1ACEA2A50637500D4BAD6 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
 		F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		F4EEB9432A6C28AF005C735F /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				F4EBB5532A363A4100545092 /* Profile */,
 				F458EEB12A2CDE2C0073B151 /* Post.swift */,
 				F4A1ACEA2A50637500D4BAD6 /* UIColor Extension.swift */,
+				F4EEB9432A6C28AF005C735F /* Palette.swift */,
 				F458EE602A2BB0B90073B151 /* Assets.xcassets */,
 				F458EE622A2BB0B90073B151 /* LaunchScreen.storyboard */,
 				F458EE652A2BB0B90073B151 /* Info.plist */,
@@ -213,6 +216,7 @@
 				F4624FFF2A4F2AE8002C7757 /* UIView Extension.swift in Sources */,
 				F4A1ACE72A4F604200D4BAD6 /* PhotosTableViewCell.swift in Sources */,
 				F458EEB02A2CC0280073B151 /* PostViewController.swift in Sources */,
+				F4EEB9442A6C28AF005C735F /* Palette.swift in Sources */,
 				F458EE582A2BB0B70073B151 /* AppDelegate.swift in Sources */,
 				F458EE6C2A2BB4590073B151 /* ProfileViewController.swift in Sources */,
 				F46250012A4F2B39002C7757 /* NewPostCell.swift in Sources */,
