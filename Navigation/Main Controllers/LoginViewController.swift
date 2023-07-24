@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
 
     private let notificationCenter = NotificationCenter.default
+
+    //проперти для реализации входа по биометрии
+    var canUseBiometrics: Bool = false
+    let context = LAContext()
+    var policy = LAPolicy.deviceOwnerAuthenticationWithBiometrics
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -94,10 +100,30 @@ class LoginViewController: UIViewController {
         return wrongFieldMessage
     }()
 
+    private lazy var biometricLoginButton: UIButton = {
+        let biometricLoginButton = UIButton()
+        biometricLoginButton.setTitle("Log In with biometrics", for: .normal)
+        biometricLoginButton.translatesAutoresizingMaskIntoConstraints = false
+        biometricLoginButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        biometricLoginButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        biometricLoginButton.layer.cornerRadius = 10
+        biometricLoginButton.layer.masksToBounds = true
+        biometricLoginButton.setTitleColor(.white, for: .normal)
+        biometricLoginButton.addTarget(self, action: #selector(biometricLoginButtonAction), for: .touchUpInside)
+        return biometricLoginButton
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Palette.backgroundColor
         loginViewControllerLayout()
+
+        // проверка, можно ли использовать биометрию
+        var error: NSError?
+        canUseBiometrics = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+        if let error = error {
+            print (error)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -120,16 +146,21 @@ class LoginViewController: UIViewController {
         super .touchesBegan(touches, with: event)
     }
 
+    //добавить функцию, чтобы кнопка входа была неактивной, пока не введёшь определённое количество символов?
     func configureButtonAppearance(for state: UIControl.State) {
         switch state {
         case .normal:
             loginButton.alpha = 1
+            biometricLoginButton.alpha = 1
         case .highlighted:
             loginButton.alpha = 0.8
+            biometricLoginButton.alpha = 0.8
         case .selected:
             loginButton.alpha = 0.8
+            biometricLoginButton.alpha = 0.8
         case .disabled:
-            loginButton.alpha = 0.8
+            loginButton.alpha = 0.2
+            biometricLoginButton.alpha = 0.2
         default:
             break
         }
@@ -165,10 +196,11 @@ class LoginViewController: UIViewController {
     private func loginViewControllerLayout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        [logoImage, loginTextField, passwortTextField, loginButton, wrongFieldMessage].forEach { contentView.addSubview($0) }
+        [logoImage, loginTextField, passwortTextField, loginButton, wrongFieldMessage, biometricLoginButton].forEach { contentView.addSubview($0) }
 
         configureButtonAppearance(for: .normal)
         configureButtonAppearance(for: .highlighted)
+        configureButtonAppearance(for: .selected)
 
         let inset: CGFloat = 16
 
@@ -205,9 +237,15 @@ class LoginViewController: UIViewController {
 
             loginButton.topAnchor.constraint(equalTo: wrongFieldMessage.bottomAnchor, constant: 9),
             loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
-            loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
-            loginButton.heightAnchor.constraint(equalToConstant: 50)
+            loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
+//            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
+            loginButton.heightAnchor.constraint(equalToConstant: 50),
+
+            biometricLoginButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 9),
+            biometricLoginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            biometricLoginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
+            biometricLoginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
+            biometricLoginButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 
@@ -235,9 +273,30 @@ class LoginViewController: UIViewController {
     }
 
     @objc
+    private func biometricLoginButtonAction() {
+        let profileViewController = ProfileViewController()
+
+        guard canUseBiometrics else {
+            return
+        }
+
+        context.evaluatePolicy(policy,
+                               localizedReason: "Авторизуйтесь для входа") { success, error in
+
+            DispatchQueue.main.async {
+                if success {
+                    self.navigationController?.pushViewController(profileViewController, animated: true)
+                } else {
+                    print ("authentication failed")
+                }
+            }
+        }
+    }
+
+    @objc
     private func keyboardShow(notification: NSNotification) {
         if let keyboardSize: CGRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            scrollView.contentInset.bottom = keyboardSize.height + 75
+            scrollView.contentInset.bottom = keyboardSize.height + 120
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0,
                                                                     left: 0,
                                                                     bottom: keyboardSize.height,
