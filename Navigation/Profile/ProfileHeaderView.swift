@@ -1,11 +1,5 @@
-//
-//  ProfileHeaderView.swift
-//  Navigation
-//
-//  Created by Михаил Болгар on 11.06.2023.
-//
-
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView {
 
@@ -21,7 +15,6 @@ class ProfileHeaderView: UIView {
         userPhotoImageView.contentMode = .scaleAspectFit
         userPhotoImageView.clipsToBounds = true
         userPhotoImageView.image = catImage
-        userPhotoImageView.translatesAutoresizingMaskIntoConstraints = false
         return userPhotoImageView
     }()
 
@@ -30,7 +23,6 @@ class ProfileHeaderView: UIView {
         userName.text = "Lady Simona"
         userName.textColor = UIColor.label
         userName.font = UIFont.boldSystemFont(ofSize: 18)
-        userName.translatesAutoresizingMaskIntoConstraints = false
         return userName
     }()
 
@@ -39,7 +31,6 @@ class ProfileHeaderView: UIView {
         statusText.text = "Waiting for something..."
         statusText.textColor = UIColor.secondaryLabel
         statusText.font = UIFont.systemFont(ofSize: 14)
-        statusText.translatesAutoresizingMaskIntoConstraints = false
         return statusText
     }()
 
@@ -56,7 +47,6 @@ class ProfileHeaderView: UIView {
         showStatusButton.layer.shadowRadius = 4
         showStatusButton.layer.shadowOpacity = 0.7
         showStatusButton.addTarget(self, action: #selector(setStatusButtonAction), for: .touchUpInside)
-        showStatusButton.translatesAutoresizingMaskIntoConstraints = false
         return showStatusButton
     }()
 
@@ -72,7 +62,6 @@ class ProfileHeaderView: UIView {
         textField.attributedPlaceholder = NSAttributedString (string: "Set your status...", attributes: [NSAttributedString.Key.foregroundColor: Palette.placeholderColor])
         textField.leftView = paddingView
         textField.leftViewMode = .always
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
@@ -111,34 +100,40 @@ class ProfileHeaderView: UIView {
         let inset: CGFloat = 16
         let safeAreaInset = self.safeAreaLayoutGuide
 
-        NSLayoutConstraint.activate([
+        userPhotoImageView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaInset).offset(inset)
+            $0.leading.equalTo(safeAreaInset).offset(inset)
+            $0.size.equalTo(photoSize)
+        }
 
-            self.widthAnchor.constraint(equalToConstant: screenWidth),
-            self.bottomAnchor.constraint(equalTo: showStatusButton.bottomAnchor, constant: inset),
+        userName.snp.makeConstraints {
+            $0.top.equalTo(userPhotoImageView).offset(5)
+            $0.centerX.equalToSuperview()
+        }
 
-            showStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: inset),
-            showStatusButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            showStatusButton.leadingAnchor.constraint(equalTo: safeAreaInset.leadingAnchor, constant: inset),
-            showStatusButton.trailingAnchor.constraint(equalTo: safeAreaInset.trailingAnchor, constant: -inset),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50),
+        statusText.snp.makeConstraints {
+            $0.top.equalTo(userName).offset(inset * 2)
+            $0.leading.equalTo(userName)
+        }
 
-            userPhotoImageView.topAnchor.constraint(equalTo: safeAreaInset.topAnchor, constant: inset),
-            userPhotoImageView.leadingAnchor.constraint(equalTo: safeAreaInset.leadingAnchor, constant: inset),
-            userPhotoImageView.heightAnchor.constraint(equalToConstant: photoSize),
-            userPhotoImageView.widthAnchor.constraint(equalToConstant: photoSize),
+        statusTextField.snp.makeConstraints {
+            $0.top.equalTo(statusText).inset(inset * 2)
+            $0.leading.equalTo(statusText)
+            $0.trailing.equalTo(safeAreaInset).offset(-inset)
+            $0.height.equalTo(40)
+        }
 
-            userName.topAnchor.constraint(equalTo: safeAreaInset.topAnchor, constant: 27),
-            userName.centerXAnchor.constraint(equalTo: centerXAnchor),
+        showStatusButton.snp.makeConstraints {
+            $0.top.equalTo(statusTextField).offset(50)
+            $0.leading.equalTo(safeAreaInset).offset(inset)
+            $0.trailing.equalTo(safeAreaInset).inset(inset)
+            $0.height.equalTo(50)
+        }
 
-            statusText.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 30),
-            statusText.leadingAnchor.constraint(equalTo: userName.leadingAnchor, constant: 0),
-
-            statusTextField.topAnchor.constraint(equalTo: statusText.bottomAnchor, constant: 10),
-            statusTextField.leadingAnchor.constraint(equalTo: statusText.leadingAnchor, constant: 0),
-            statusTextField.trailingAnchor.constraint(equalTo: safeAreaInset.trailingAnchor, constant: -inset),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-
-        ])
+        self.snp.makeConstraints {
+            $0.width.equalTo(screenWidth)
+            $0.bottom.equalTo(showStatusButton).offset(inset)
+        }
     }
 
     @objc
