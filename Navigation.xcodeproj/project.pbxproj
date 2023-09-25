@@ -28,6 +28,8 @@
 		F4A1ACE72A4F604200D4BAD6 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1ACE62A4F604200D4BAD6 /* PhotosTableViewCell.swift */; };
 		F4A1ACEB2A50637500D4BAD6 /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A1ACEA2A50637500D4BAD6 /* UIColor Extension.swift */; };
 		F4DBA5FA2ABC8595007AF64F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F4DBA5F92ABC8595007AF64F /* SnapKit */; };
+		F4DBA6032ABDCDC1007AF64F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DBA6022ABDCDC1007AF64F /* User.swift */; };
+		F4DBA6072ABDD12B007AF64F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DBA6062ABDD12B007AF64F /* UserData.swift */; };
 		F4EBB5552A363A6D00545092 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */; };
 		F4EEB9442A6C28AF005C735F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EEB9432A6C28AF005C735F /* Palette.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,8 @@
 		F4A1ACE42A4F5FA100D4BAD6 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4A1ACE62A4F604200D4BAD6 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		F4A1ACEA2A50637500D4BAD6 /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
+		F4DBA6022ABDCDC1007AF64F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F4DBA6062ABDD12B007AF64F /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		F4EBB5542A363A6D00545092 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		F4EEB9432A6C28AF005C735F /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,8 +106,9 @@
 		F458EE562A2BB0B70073B151 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				F458EE572A2BB0B70073B151 /* AppDelegate.swift */,
-				F458EE592A2BB0B70073B151 /* SceneDelegate.swift */,
+				F4DBA6052ABDD113007AF64F /* Data */,
+				F4DBA6042ABDCDCB007AF64F /* App */,
+				F4DBA6012ABDCDAB007AF64F /* Model */,
 				F44969412A4DC9B600D01BB0 /* Main Controllers */,
 				F4EBB5532A363A4100545092 /* Profile */,
 				F458EEB12A2CDE2C0073B151 /* Post.swift */,
@@ -125,6 +130,31 @@
 				F40B989D2A532A93002F8CFA /* ScaledPhoto.swift */,
 			);
 			path = Gallery;
+			sourceTree = "<group>";
+		};
+		F4DBA6012ABDCDAB007AF64F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4DBA6022ABDCDC1007AF64F /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F4DBA6042ABDCDCB007AF64F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F458EE572A2BB0B70073B151 /* AppDelegate.swift */,
+				F458EE592A2BB0B70073B151 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F4DBA6052ABDD113007AF64F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F4DBA6062ABDD12B007AF64F /* UserData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		F4EBB5532A363A4100545092 /* Profile */ = {
@@ -227,6 +257,7 @@
 				F4EEB9442A6C28AF005C735F /* Palette.swift in Sources */,
 				F458EE582A2BB0B70073B151 /* AppDelegate.swift in Sources */,
 				F458EE6C2A2BB4590073B151 /* ProfileViewController.swift in Sources */,
+				F4DBA6072ABDD12B007AF64F /* UserData.swift in Sources */,
 				F46250012A4F2B39002C7757 /* NewPostCell.swift in Sources */,
 				F458EE5A2A2BB0B70073B151 /* SceneDelegate.swift in Sources */,
 				F458EEB22A2CDE2C0073B151 /* Post.swift in Sources */,
@@ -237,6 +268,7 @@
 				F449693F2A4D143A00D01BB0 /* NewPostModel.swift in Sources */,
 				F4EBB5552A363A6D00545092 /* ProfileHeaderView.swift in Sources */,
 				F4A1ACEB2A50637500D4BAD6 /* UIColor Extension.swift in Sources */,
+				F4DBA6032ABDCDC1007AF64F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
